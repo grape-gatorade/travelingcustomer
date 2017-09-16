@@ -22,6 +22,7 @@ source .venv/bin/activate
 
 ```
 pip install -r requirements.txt
+bower install
 ```
 
 4. Run the development server:

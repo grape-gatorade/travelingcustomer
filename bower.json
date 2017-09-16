@@ -1,0 +1,21 @@
+{
+  "name": "travelingcustomer",
+  "homepage": "https://github.com/grape-gatorade/travelingcustomer",
+  "authors": [
+    "Team Grape Gatorade"
+  ],
+  "description": "",
+  "main": "",
+  "license": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.6.1"
+  }
+}
