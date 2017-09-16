@@ -1,6 +1,6 @@
-# Traveling Customer
-
 [![Build Status](https://travis-ci.org/grape-gatorade/travelingcustomer.svg?branch=master)](https://travis-ci.org/grape-gatorade/travelingcustomer)
+
+# Traveling Customer
 
 ## Developer Installation
 
