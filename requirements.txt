@@ -1,5 +1,9 @@
+### UI ###
 Flask
 Flask-Bower
 
-### testing ###
+### Data Collection ###
+beautifulsoup4
+
+### Testing ###
 pylint
