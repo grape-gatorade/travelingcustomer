@@ -1,9 +1,11 @@
 ### UI ###
 Flask
 Flask-Bower
+Flask-GoogleMaps
 
 ### Data Collection ###
 beautifulsoup4
+requests
 
 ### Testing ###
 pylint
