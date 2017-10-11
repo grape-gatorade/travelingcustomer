@@ -1,0 +1,23 @@
+{
+  "name": "tc",
+  "description": "Traveling Customer",
+  "private": true,
+  "author": "Team Grape Gatorade",
+  "version": "0.0.1",
+  "repository": "",
+  "scripts": {
+    "start": "brunch watch --server",
+    "build": "brunch build --production"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "bower": "^1.8.2",
+    "brunch": "^2.10.11"
+  },
+  "devDependencies": {
+    "auto-reload-brunch": "^2",
+    "brunch": "^2",
+    "clean-css-brunch": "^2",
+    "uglify-js-brunch": "^2"
+  }
+}
