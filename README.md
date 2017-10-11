@@ -23,13 +23,12 @@ source .venv/bin/activate
 ```
 pip install -r requirements.txt
 npm install
-bower install
 ```
 
 4. Automatically build assets with Brunch:
 
 ```
-brunch watch
+./node_modules/brunch/bin/brunch watch
 ```
 
 4. Run the development server:

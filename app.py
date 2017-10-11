@@ -5,10 +5,8 @@ Traveling Customer
 """
 
 from flask import Flask
-from flask_bower import Bower
 
 APP = Flask(__name__, static_folder='public', static_url_path='/static')
-Bower(APP)
 
 @APP.route("/")
 def hello_world():

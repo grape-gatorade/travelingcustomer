@@ -1,6 +1,5 @@
 ### UI ###
 Flask
-Flask-Bower
 
 ### Data Collection ###
 beautifulsoup4

@@ -1,7 +1,7 @@
 language: python
 install:
-        pip install -r requirements.txt
-        npm install
+ - pip install -r requirements.txt
+ - npm install
 script:
-        find . -iname "*.py" | xargs pylint
-        find . -iname "*.js" | xargs ./node_modules/eslint/bin/eslint.js
+ - find . -iname "*.py" | xargs pylint
+ - find . -iname "*.js" | xargs ./node_modules/eslint/bin/eslint.js

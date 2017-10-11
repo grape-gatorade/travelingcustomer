@@ -9,7 +9,10 @@
     "start": "brunch watch --server",
     "build": "brunch build --production"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "react": "^16.0.0"
+  },
   "devDependencies": {
     "auto-reload-brunch": "^2",
     "babel-brunch": "^6.1.1",
@@ -22,6 +25,8 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
+    "sass": "^1.0.0-beta.2",
+    "sass-brunch": "^2.10.4",
     "uglify-js-brunch": "^2"
   }
 }
