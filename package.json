@@ -9,15 +9,19 @@
     "start": "brunch watch --server",
     "build": "brunch build --production"
   },
-  "dependencies": {
-    "babel-cli": "^6.26.0",
-    "bower": "^1.8.2",
-    "brunch": "^2.10.11"
-  },
+  "dependencies": {},
   "devDependencies": {
     "auto-reload-brunch": "^2",
+    "babel-brunch": "^6.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "brunch": "^2",
     "clean-css-brunch": "^2",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "uglify-js-brunch": "^2"
   }
 }
