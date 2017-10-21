@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head lang="en">
-    <meta charset="UTF-8">
-    <title>Flask React</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- styles -->
-  </head>
-  <body>
-    <div class="container">
-      <h1>Flask React</h1>
-      <br>
-      <div id="main"></div>
-    </div>
-    <!-- scripts -->
-    <script src="{{ url_for('bower.static', filename='react/react.min.js') }}"></script>
-    <script src="{{ url_for('bower.static', filename='react/react-dom.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/js/main.js') }}"></script>
-  </body>
-</html>
+<head>
+</head>
+
+<body>
+  <div id="reactEntry"></div>
+  <div id="reactEntry2"></div>
+
+  <div id="reactMap"></div>
+
+  <!-- Attach React components -->
+  <script type="text/javascript" src="{{ url_for('static', filename='bundle.js') }}"></script>
+</body>

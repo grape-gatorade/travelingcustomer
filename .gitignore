@@ -102,3 +102,6 @@ ENV/
 
 # Bower
 bower_components
+
+#Gulp
+node_modules
