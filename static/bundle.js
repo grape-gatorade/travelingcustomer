@@ -61,7 +61,7 @@
 
 	var _Goodbye2 = _interopRequireDefault(_Goodbye);
 
-	var _Demo = __webpack_require__(186);
+	var _Demo = __webpack_require__(184);
 
 	var _Demo2 = _interopRequireDefault(_Demo);
 
@@ -22775,7 +22775,156 @@
 
 	'use strict';
 
-	var _geolocated = __webpack_require__(185);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactGeolocated = __webpack_require__(185);
+
+	var _googleMapsReact = __webpack_require__(166);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Demo = function (_React$Component) {
+	  _inherits(Demo, _React$Component);
+
+	  function Demo() {
+	    _classCallCheck(this, Demo);
+
+	    return _possibleConstructorReturn(this, (Demo.__proto__ || Object.getPrototypeOf(Demo)).apply(this, arguments));
+	  }
+
+	  _createClass(Demo, [{
+	    key: 'render',
+	    value: function render() {
+	      return !this.props.isGeolocationAvailable ? _react2.default.createElement(
+	        'div',
+	        null,
+	        'Your browser does not support Geolocation'
+	      ) : !this.props.isGeolocationEnabled ? _react2.default.createElement(
+	        'div',
+	        null,
+	        'Geolocation is not enabled'
+	      ) : this.props.coords ? _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'table',
+	          null,
+	          _react2.default.createElement(
+	            'tbody',
+	            null,
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'latitude'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.latitude
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'longitude'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.longitude
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'altitude'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.altitude
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'heading'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.heading
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'latitude'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.latitude
+	              )
+	            )
+	          )
+	        )
+	      ) : _react2.default.createElement(
+	        'div',
+	        null,
+	        'Getting the location data\u2026 '
+	      );
+	    }
+	  }]);
+
+	  return Demo;
+	}(_react2.default.Component);
+
+	// Using Object.assign
+
+
+	Demo.propTypes = Object.assign({}, Demo.propTypes, _reactGeolocated.geoPropTypes);
+	// Using ES6 object spread syntax
+	//Demo.propTypes = {...Demo.propTypes, ...geoPropTypes};
+
+	exports.default = (0, _reactGeolocated.geolocated)()(Demo);
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _geolocated = __webpack_require__(186);
 
 	var _geolocated2 = _interopRequireDefault(_geolocated);
 
@@ -22784,7 +22933,7 @@
 	module.exports = { geolocated: _geolocated2.default, geoPropTypes: _geolocated.geoPropTypes };
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22933,155 +23082,6 @@
 	        message: _propTypes2.default.string
 	    })
 	};
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(3);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactGeolocated = __webpack_require__(184);
-
-	var _googleMapsReact = __webpack_require__(166);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Demo = function (_React$Component) {
-	  _inherits(Demo, _React$Component);
-
-	  function Demo() {
-	    _classCallCheck(this, Demo);
-
-	    return _possibleConstructorReturn(this, (Demo.__proto__ || Object.getPrototypeOf(Demo)).apply(this, arguments));
-	  }
-
-	  _createClass(Demo, [{
-	    key: 'render',
-	    value: function render() {
-	      return !this.props.isGeolocationAvailable ? _react2.default.createElement(
-	        'div',
-	        null,
-	        'Your browser does not support Geolocation'
-	      ) : !this.props.isGeolocationEnabled ? _react2.default.createElement(
-	        'div',
-	        null,
-	        'Geolocation is not enabled'
-	      ) : this.props.coords ? _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'table',
-	          null,
-	          _react2.default.createElement(
-	            'tbody',
-	            null,
-	            _react2.default.createElement(
-	              'tr',
-	              null,
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                'latitude'
-	              ),
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                this.props.coords.latitude
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'tr',
-	              null,
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                'longitude'
-	              ),
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                this.props.coords.longitude
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'tr',
-	              null,
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                'altitude'
-	              ),
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                this.props.coords.altitude
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'tr',
-	              null,
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                'heading'
-	              ),
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                this.props.coords.heading
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'tr',
-	              null,
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                'latitude'
-	              ),
-	              _react2.default.createElement(
-	                'td',
-	                null,
-	                this.props.coords.latitude
-	              )
-	            )
-	          )
-	        )
-	      ) : _react2.default.createElement(
-	        'div',
-	        null,
-	        'Getting the location data\u2026 '
-	      );
-	    }
-	  }]);
-
-	  return Demo;
-	}(_react2.default.Component);
-
-	// Using Object.assign
-
-
-	Demo.propTypes = Object.assign({}, Demo.propTypes, _reactGeolocated.geoPropTypes);
-	// Using ES6 object spread syntax
-	//Demo.propTypes = {...Demo.propTypes, ...geoPropTypes};
-
-	exports.default = (0, _reactGeolocated.geolocated)()(Demo);
 
 /***/ })
 /******/ ]);
