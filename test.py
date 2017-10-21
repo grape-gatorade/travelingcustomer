@@ -21,3 +21,11 @@ def test_gmaps():
 
     travel_info = matrix["rows"][0]["elements"][1]
     assert travel_info["status"] == "OK"
+
+def run_tests():
+    """ Runs all tests """
+    test_gmaps()
+    test_strategy()
+
+if __name__ == '__main__':
+    run_tests()
