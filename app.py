@@ -1,10 +1,9 @@
 """ Server for Traveling Customer Web App """
-from datetime import datetime
 from flask import Flask, render_template
 
 # Constants
 APP = Flask(__name__)
-                                    
+
 @APP.route('/')
 def hello_world():
     """ Main page of site """
