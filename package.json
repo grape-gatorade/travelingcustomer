@@ -1,32 +1,26 @@
 {
-  "name": "tc",
-  "description": "Traveling Customer",
-  "private": true,
-  "author": "Team Grape Gatorade",
-  "version": "0.0.1",
-  "repository": "",
+  "name": "starter-kit",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "brunch watch --server",
-    "build": "brunch build --production"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "python app.py"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "webpack": "^1.15.0"
   },
   "dependencies": {
-    "bootstrap-sass": "^3.3.7",
-    "react": "^16.0.0"
-  },
-  "devDependencies": {
-    "auto-reload-brunch": "^2",
-    "babel-brunch": "^6.1.1",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
-    "brunch": "^2",
-    "clean-css-brunch": "^2",
-    "eslint": "^4.8.0",
-    "eslint-config-airbnb": "^16.0.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
-    "sass": "^1.0.0-beta.2",
-    "sass-brunch": "^2.10.4",
-    "uglify-js-brunch": "^2"
+    "google-maps-react": "^1.1.0",
+    "prop-types": "^15.6.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   }
 }
