@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+import json
 import googlemaps
 from datetime import datetime
 gmaps = googlemaps.Client(key='AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA')
@@ -6,14 +7,16 @@ gmaps = googlemaps.Client(key='AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA')
 app = Flask(__name__)
 
 def test_gmaps():
-    geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
-    reverse_geocode_result = gmaps.reverse_geocode((40.714224, -73.961452))
-    now = datetime.now()
-    directions_result = gmaps.directions("Sydney Town Hall",
-                                        "Parramatta, NSW",
-                                        mode="transit",
-                                        departure_time=now)
-    print (directions_result)
+    
+    matrix=gmaps.distance_matrix(["Wal-Mart, Troy, NY", "Rensselaer Polytechnic Institute"], ["Wal-Mart, Troy, NY", "Rensselaer Polytechnic Institute"],
+                    "driving", "English", None, "imperial",
+                    datetime.now(), None, "driving",
+                    None, None)
+
+
+    x=matrix["rows"][0]["elements"][1]
+    print json.dumps(x)
+
                                     
 
 @app.route('/')
