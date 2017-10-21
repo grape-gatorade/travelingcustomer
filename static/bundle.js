@@ -61,6 +61,10 @@
 
 	var _Goodbye2 = _interopRequireDefault(_Goodbye);
 
+	var _Demo = __webpack_require__(184);
+
+	var _Demo2 = _interopRequireDefault(_Demo);
+
 	var _react = __webpack_require__(3);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -71,11 +75,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//import MapContainer from './MapContainer';
-	//import Container from './Container'
 	_reactDom2.default.render(_react2.default.createElement(_Hello2.default, null), document.getElementById('reactEntry'));
+	//import MapContainer from './MapContainer';
+
+
+	_reactDom2.default.render(_react2.default.createElement(_Demo2.default, null), document.getElementById('reactMap'));
 	_reactDom2.default.render(_react2.default.createElement(_Goodbye2.default, null), document.getElementById('reactEntry2'));
-	//ReactDOM.render(<Container/>, document.getElementById('reactMap'));
 
 /***/ }),
 /* 2 */
@@ -19841,9 +19846,11 @@
 	  function Goodbye(props) {
 	    _classCallCheck(this, Goodbye);
 
-	    //const {lat, lng} = this.props.initialCenter;
+	    //geo = navigator.geolocation;
 	    var _this = _possibleConstructorReturn(this, (Goodbye.__proto__ || Object.getPrototypeOf(Goodbye)).call(this, props));
 
+	    console.log("Constr");
+	    //const {lat, lng} = this.props.initialCenter;
 	    _this.state = {
 	      date: new Date()
 	    };
@@ -19851,6 +19858,11 @@
 	  }
 
 	  _createClass(Goodbye, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      console.log('Component DID MOUNT!');
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -19870,13 +19882,18 @@
 	          this.props.name
 	        ),
 	        _react2.default.createElement(
-	          _googleMapsReact.Map,
-	          { google: this.props.google, zoom: 10, initialCenter: {
-	              lat: 40.854885,
-	              lng: -88.081807
-	            } },
-	          _react2.default.createElement(_googleMapsReact.Marker, { onClick: this.onMarkerClick,
-	            name: 'Current location' })
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            _googleMapsReact.Map,
+	            { google: this.props.google, zoom: 10, initialCenter: {
+	                lat: 40.854885,
+	                lng: -88.081807
+	              }, style: { width: '50%', height: '50%', position: 'relative' },
+	              centerAroundCurrentLocation: true },
+	            _react2.default.createElement(_googleMapsReact.Marker, { onClick: this.onMarkerClick,
+	              name: 'Current location' })
+	          )
 	        )
 	      );
 	    }
@@ -19885,6 +19902,26 @@
 	  return Goodbye;
 	}(_react2.default.Component);
 
+	var options = {
+	  enableHighAccuracy: true,
+	  timeout: 5000,
+	  maximumAge: 0
+	};
+
+	function success(pos) {
+	  var crd = pos.coords;
+
+	  console.log('Your current position is:');
+	  console.log('Latitude : ' + crd.latitude);
+	  console.log('Longitude: ' + crd.longitude);
+	  console.log('More or less ' + crd.accuracy + ' meters.');
+	};
+
+	function error(err) {
+	  console.warn('ERROR(' + err.code + '): ' + err.message);
+	};
+
+	navigator.geolocation.getCurrentPosition(success, error, options);
 	//componentDidMount()
 
 	exports.default = (0, _googleMapsReact.GoogleApiWrapper)({
@@ -22731,6 +22768,320 @@
 	    };
 	  };
 	});
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactGeolocated = __webpack_require__(185);
+
+	var _googleMapsReact = __webpack_require__(166);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Demo = function (_React$Component) {
+	  _inherits(Demo, _React$Component);
+
+	  function Demo() {
+	    _classCallCheck(this, Demo);
+
+	    return _possibleConstructorReturn(this, (Demo.__proto__ || Object.getPrototypeOf(Demo)).apply(this, arguments));
+	  }
+
+	  _createClass(Demo, [{
+	    key: 'render',
+	    value: function render() {
+	      return !this.props.isGeolocationAvailable ? _react2.default.createElement(
+	        'div',
+	        null,
+	        'Your browser does not support Geolocation'
+	      ) : !this.props.isGeolocationEnabled ? _react2.default.createElement(
+	        'div',
+	        null,
+	        'Geolocation is not enabled'
+	      ) : this.props.coords ? _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'table',
+	          null,
+	          _react2.default.createElement(
+	            'tbody',
+	            null,
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'latitude'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.latitude
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'longitude'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.longitude
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'altitude'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.altitude
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'heading'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.heading
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'tr',
+	              null,
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                'latitude'
+	              ),
+	              _react2.default.createElement(
+	                'td',
+	                null,
+	                this.props.coords.latitude
+	              )
+	            )
+	          )
+	        )
+	      ) : _react2.default.createElement(
+	        'div',
+	        null,
+	        'Getting the location data\u2026 '
+	      );
+	    }
+	  }]);
+
+	  return Demo;
+	}(_react2.default.Component);
+
+	// Using Object.assign
+
+
+	Demo.propTypes = Object.assign({}, Demo.propTypes, _reactGeolocated.geoPropTypes);
+	// Using ES6 object spread syntax
+	//Demo.propTypes = {...Demo.propTypes, ...geoPropTypes};
+
+	exports.default = (0, _reactGeolocated.geolocated)()(Demo);
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _geolocated = __webpack_require__(186);
+
+	var _geolocated2 = _interopRequireDefault(_geolocated);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	module.exports = { geolocated: _geolocated2.default, geoPropTypes: _geolocated.geoPropTypes };
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.geoPropTypes = undefined;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(3);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(169);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	function getDisplayName(WrappedComponent) {
+	    return 'Geolocated(' + (WrappedComponent.displayName || WrappedComponent.name || 'Component') + ')';
+	}
+
+	var geolocated = function geolocated() {
+	    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+	        _ref$positionOptions = _ref.positionOptions,
+	        positionOptions = _ref$positionOptions === undefined ? {
+	        enableHighAccuracy: true,
+	        maximumAge: 0,
+	        timeout: Infinity
+	    } : _ref$positionOptions,
+	        _ref$userDecisionTime = _ref.userDecisionTimeout,
+	        userDecisionTimeout = _ref$userDecisionTime === undefined ? null : _ref$userDecisionTime,
+	        _ref$geolocationProvi = _ref.geolocationProvider,
+	        geolocationProvider = _ref$geolocationProvi === undefined ? typeof navigator !== 'undefined' && navigator.geolocation : _ref$geolocationProvi;
+
+	    return function (WrappedComponent) {
+	        var result = function (_Component) {
+	            _inherits(Geolocated, _Component);
+
+	            function Geolocated(props) {
+	                _classCallCheck(this, Geolocated);
+
+	                var _this = _possibleConstructorReturn(this, (Geolocated.__proto__ || Object.getPrototypeOf(Geolocated)).call(this, props));
+
+	                _this.state = {
+	                    coords: null,
+	                    isGeolocationAvailable: Boolean(geolocationProvider),
+	                    isGeolocationEnabled: true, // be optimistic
+	                    positionError: null
+	                };
+
+	                if (userDecisionTimeout) {
+	                    _this.userDecisionTimeoutId = setTimeout(function () {
+	                        _this.onPositionError();
+	                    }, userDecisionTimeout);
+	                }
+
+	                _this.onPositionError = _this.onPositionError.bind(_this);
+	                _this.onPositionSuccess = _this.onPositionSuccess.bind(_this);
+	                _this.cancelUserDecisionTimeout = _this.cancelUserDecisionTimeout.bind(_this);
+	                return _this;
+	            }
+
+	            _createClass(Geolocated, [{
+	                key: 'cancelUserDecisionTimeout',
+	                value: function cancelUserDecisionTimeout() {
+	                    if (this.userDecisionTimeoutId) {
+	                        clearTimeout(this.userDecisionTimeoutId);
+	                    }
+	                }
+	            }, {
+	                key: 'onPositionError',
+	                value: function onPositionError(positionError) {
+	                    this.cancelUserDecisionTimeout();
+	                    this.setState({
+	                        coords: null,
+	                        isGeolocationAvailable: this.state.isGeolocationAvailable,
+	                        isGeolocationEnabled: false,
+	                        positionError: positionError
+	                    });
+	                }
+	            }, {
+	                key: 'onPositionSuccess',
+	                value: function onPositionSuccess(position) {
+	                    this.cancelUserDecisionTimeout();
+	                    this.setState({
+	                        coords: position.coords,
+	                        isGeolocationAvailable: this.state.isGeolocationAvailable,
+	                        isGeolocationEnabled: true,
+	                        positionError: null
+	                    });
+	                }
+	            }, {
+	                key: 'componentDidMount',
+	                value: function componentDidMount() {
+	                    if (!geolocationProvider || !geolocationProvider.getCurrentPosition) {
+	                        throw new Error('The provided geolocation provider is invalid');
+	                    }
+	                    geolocationProvider.getCurrentPosition(this.onPositionSuccess, this.onPositionError, positionOptions);
+	                }
+	            }, {
+	                key: 'componentWillUnmount',
+	                value: function componentWillUnmount() {
+	                    this.cancelUserDecisionTimeout();
+	                }
+	            }, {
+	                key: 'render',
+	                value: function render() {
+	                    return _react2.default.createElement(WrappedComponent, _extends({}, this.state, this.props));
+	                }
+	            }]);
+
+	            return Geolocated;
+	        }(_react.Component);
+	        result.displayName = getDisplayName(WrappedComponent);
+	        return result;
+	    };
+	};
+
+	exports.default = geolocated;
+	var geoPropTypes = exports.geoPropTypes = {
+	    coords: _propTypes2.default.shape({
+	        latitude: _propTypes2.default.number,
+	        longitude: _propTypes2.default.number,
+	        altitude: _propTypes2.default.number,
+	        accuracy: _propTypes2.default.number,
+	        altitudeAccuracy: _propTypes2.default.number,
+	        heading: _propTypes2.default.number,
+	        speed: _propTypes2.default.number
+	    }),
+	    isGeolocationAvailable: _propTypes2.default.bool,
+	    isGeolocationEnabled: _propTypes2.default.bool,
+	    positionError: _propTypes2.default.shape({
+	        code: _propTypes2.default.oneOf([1, 2, 3]),
+	        message: _propTypes2.default.string
+	    })
+	};
 
 /***/ })
 /******/ ]);
