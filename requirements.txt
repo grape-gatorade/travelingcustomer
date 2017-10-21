@@ -5,3 +5,4 @@ MarkupSafe==0.23
 Werkzeug==0.10.4
 wheel==0.24.0
 googlemaps==2.5.1
+certifi==2015.04.28

@@ -1,27 +1,30 @@
-from flask import Flask, render_template
-import googlemaps
+""" Server for Traveling Customer Web App """
 from datetime import datetime
-gmaps = googlemaps.Client(key='AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA')
+from flask import Flask, render_template
+import test
+import googlemaps
 
-app = Flask(__name__)
+# Constants
+GMAPS = googlemaps.Client(key='AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA')
+APP = Flask(__name__)
 
 def test_gmaps():
-    geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
-    reverse_geocode_result = gmaps.reverse_geocode((40.714224, -73.961452))
+    """ Testing out the Google Maps API """
     now = datetime.now()
-    directions_result = gmaps.directions("Sydney Town Hall",
-                                        "Parramatta, NSW",
-                                        mode="transit",
-                                        departure_time=now)
-    print (directions_result)
-                                    
-
-@app.route('/')
+    directions_result = GMAPS.directions("Sydney Town Hall",
+                                         "Parramatta, NSW",
+                                         mode="transit",
+                                         departure_time=now)
+    print(directions_result)
+    
+@APP.route('/')
 def hello_world():
+    """ Main page of site """
     test_gmaps()
     return render_template('index.html')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    test.test_strategy()
 
+    APP.run(debug=True)

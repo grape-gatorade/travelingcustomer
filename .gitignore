@@ -36,3 +36,7 @@ bower_components
 
 #Gulp
 node_modules
+
+#Python cache
+__pycache__/
+*.pyc
