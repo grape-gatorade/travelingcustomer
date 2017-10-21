@@ -31,5 +31,8 @@ bower_components/
 # Brunch folder for temporary files.
 tmp/
 
-# Brunch output folder.
-public/
+# Bower
+bower_components
+
+#Gulp
+node_modules

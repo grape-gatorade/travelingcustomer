@@ -1,19 +1,10 @@
-#!/usr/bin/env python3
+from flask import Flask, render_template
+app = Flask(__name__)
 
-"""
-Traveling Customer
-"""
-
-from flask import Flask
-
-APP = Flask(__name__, static_folder='public', static_url_path='/static')
-
-@APP.route("/")
+@app.route('/')
 def hello_world():
-    """
-    Placeholder route
-    """
-    return "Hello, world!"
+  return render_template('index.html')
 
-if __name__ == "__main__":
-    APP.run()
+if __name__ == '__main__':
+  app.run(debug=True)
+

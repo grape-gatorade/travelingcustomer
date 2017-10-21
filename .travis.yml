@@ -1,7 +1,4 @@
-language: python
+language: node_js
 install:
- - pip install -r requirements.txt
- - npm install
-script:
- - find . -iname "*.py" | xargs pylint
- - find . -iname "*.js" | xargs ./node_modules/eslint/bin/eslint.js
+- npm install
+script: webpack
