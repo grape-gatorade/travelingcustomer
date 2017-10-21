@@ -1,6 +1,7 @@
 """ Contains the OptimalPath class, implementing the PathStrategy """
 from python.PathStrategyInterface import PathStrategy
 
+
 class OptimalPath(PathStrategy):
     """
         OptimalPath implements the PathStrategy Interface.
@@ -8,6 +9,8 @@ class OptimalPath(PathStrategy):
     """
 
     def calculate_path(self):
-        """ returns the optimal path as determined by the Traveling Salesman Algorithm. """
+        """
+            Returns the optimal path:
+            as determined by the Traveling Salesman Algorithm.
+        """
         return "Optimal Path"
-    

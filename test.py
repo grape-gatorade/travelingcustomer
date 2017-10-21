@@ -1,6 +1,5 @@
 """ Unit tests for traveling customer python modules """
 import datetime
-import json
 import googlemaps
 
 from python.OptimalPath import OptimalPath
@@ -9,7 +8,7 @@ def test_strategy():
     """ Test function for strategy design pattern implementation """
     path = OptimalPath()
 
-    assert(path.calculate_path() == "Optimal Path")
+    assert path.calculate_path() == "Optimal Path"
 
 def test_gmaps():
     """ Test function for Google Maps API """
@@ -21,4 +20,4 @@ def test_gmaps():
                                    None, None)
 
     travel_info = matrix["rows"][0]["elements"][1]
-    assert(travel_info["status"] == "OK")
+    assert travel_info["status"] == "OK"

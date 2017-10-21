@@ -1,4 +1,7 @@
-language: node_js
+language: python
 install:
+- pip install -r requirements.txt
 - npm install
-script: webpack
+script: 
+- webpack
+- find . -type f \( -iname "*.py"   ! -iname "__init__.py" ! -path "./.venv/*" \) | xargs pylint
