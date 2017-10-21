@@ -6,3 +6,4 @@ install:
 script: 
 - webpack
 - find . -type f \( -iname "*.py"   ! -iname "__init__.py" ! -path "./.venv/*" \) | xargs pylint
+- python test.py
