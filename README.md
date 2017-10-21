@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/grape-gatorade/travelingcustomer.svg?branch=map-view-backend)](https://travis-ci.org/grape-gatorade/travelingcustomer)
 
 # React + Flask starter kit
 
