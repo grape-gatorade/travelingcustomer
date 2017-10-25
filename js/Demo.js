@@ -1,15 +1,16 @@
 import React from 'react';
-import {geolocated, geoPropTypes} from 'react-geolocated';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import { geolocated, geoPropTypes } from 'react-geolocated';
+
+
 class Demo extends React.Component {
   render() {
-    return !this.props.isGeolocationAvailable
-      ? <div>Your browser does not support Geolocation</div>
-      : !this.props.isGeolocationEnabled
-        ? <div>Geolocation is not enabled</div>
-        : this.props.coords
-          ?
-          <div>
+    if (!this.props.isGeolocationAvailable) {
+      return <div>Your browser does not support Geolocation</div>;
+    } else if (!this.props.isGeolocationEnabled) {
+      return <div>Geolocation is not enabled</div>;
+    } else if (this.props.coords) {
+      return (
+        <div>
           <table>
             <tbody>
               <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
@@ -19,14 +20,16 @@ class Demo extends React.Component {
               <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
             </tbody>
           </table>
-          </div>
-          : <div>Getting the location data&hellip; </div>;
+        </div>);
+    }
+
+    return <div>Getting the location data&hellip; </div>;
   }
 }
 
 // Using Object.assign
 Demo.propTypes = Object.assign({}, Demo.propTypes, geoPropTypes);
 // Using ES6 object spread syntax
-//Demo.propTypes = {...Demo.propTypes, ...geoPropTypes};
+// Demo.propTypes = {...Demo.propTypes, ...geoPropTypes};
 
 export default geolocated()(Demo);
