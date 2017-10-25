@@ -1,89 +1,33 @@
-/* eslint-env browser */
-import React from 'react';
-import PropTypes from 'prop-types';
-// import {ScriptCache} from 'google-maps-react/dist/lib/ScriptCache';
-// import GoogleApi from 'google-maps-react/dist/lib/GoogleApi';
-// import GoogleApiComponent from 'google-maps-react/dist/';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+// /* eslint-env browser */
+import React, { Component } from 'react';
+import GoogleMapReact from 'google-map-react';
 
-class Goodbye extends React.Component {
-  constructor(props) {
-    super(props);
-    // geo = navigator.geolocation;
-    console.log('Constr');
-    // const {lat, lng} = this.props.initialCenter;
-    this.state = {
-      date: new Date(),
-      centerAroundCurrentLocation: true,
-    };
-  }
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-  componentDidMount() {
-    console.log('Component DID MOUNT!');
-  }
+class Goodbye extends Component {
   render() {
+    // console.log(this.props.center.lat);
+    // console.log(this.props.center.lng);
     return (
-      <div>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-        <div> Goodbye, World, {this.props.name}</div>
-        <div>
-          <Map
-            google={this.props.google}
-            zoom={10}
-            initialCenter={{
-            lat: 40.854885,
-            lng: -88.081807,
-            }}
-            style={{ width: '50%', height: '50%', position: 'relative' }}
-            centerAroundCurrentLocation={this.state.centerAroundCurrentLocation}
-          >
-            <Marker
-              onClick={this.onMarkerClick}
-              name="Current location"
-            />
-          </Map>
-        </div>
-      </div>
+      <GoogleMapReact
+        defaultCenter={this.props.center}
+        defaultZoom={this.props.zoom}
+        style={this.props.style}
+      >
+        <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text="Kreyser Avrora"
+        />
+      </GoogleMapReact>
     );
   }
 }
 
 Goodbye.defaultProps = {
-  name: 'My Name',
-  google: {
-    name: 'google',
-  },
+  center: { lat: 59.95, lng: 30.33 },
+  zoom: 11,
+  style: { width: '50%', height: '50%', position: 'relative' },
 };
 
-Goodbye.propTypes = {
-  name: PropTypes.string,
-  google: PropTypes.object,
-};
-
-const options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
-
-function success(pos) {
-  const crd = pos.coords;
-
-  console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-}
-
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-
-if (typeof window !== 'undefined') {
-  window.navigator.geolocation.getCurrentPosition(success, error, options);
-}
-// componentDidMount()
-
-export default GoogleApiWrapper({
-  apiKey: ('AIzaSyAZyEGbbz1wMFvjbX0yS_LDCG0WOyouWjk'),
-})(Goodbye);
+export default Goodbye;
