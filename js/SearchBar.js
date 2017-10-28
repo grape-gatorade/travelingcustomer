@@ -6,12 +6,23 @@ class SearchBar extends React.Component {
     super(props);
     this.state = { address: 'Troy, NY' };
     this.onChange = this.onChange.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   onChange(address) {
     this.setState({ address });
   }
+
+  handleSelect(address, placeId) {
+
+    console.log("handle select called");
+    console.log(address)
+    console.log(placeId)
+    this.setState({ address, placeId });
+  }
+
+
 
   handleFormSubmit(event) {
     event.preventDefault();
@@ -29,6 +40,7 @@ class SearchBar extends React.Component {
       onChange: this.onChange,
     };
 
+
     const options = {
       googleLogo: true,
     };
@@ -40,6 +52,7 @@ class SearchBar extends React.Component {
         <PlacesAutocomplete
           inputProps={inputProps}
           options={options}
+          onSelect={this.handleSelect}
         />
         <button type="submit">Submit</button>
       </form>
