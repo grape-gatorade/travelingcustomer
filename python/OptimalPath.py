@@ -14,3 +14,6 @@ class OptimalPath(PathStrategy):
             as determined by the Traveling Salesman Algorithm.
         """
         return "Optimal Path"
+
+    def solveTSPg(graph):
+        

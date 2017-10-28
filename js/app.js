@@ -2,22 +2,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Hello from './Hello';
-import Goodbye from './Goodbye';
-import Demo from './Demo';
+import Map from './Map';
+import SearchBar from './SearchBar';
 
-let currentLocation = {};
+let map = null;
+const API_KEY = 'AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA';
 
 const assignCurrentLocation = function assignCurrentLocation(position) {
-  currentLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
-  ReactDOM.render(<Goodbye center={currentLocation} />, window.document.getElementById('reactEntry2'));
+  const currentLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
+  if (map !== null) {
+    map.updateCenter(currentLocation);
+  }
 };
 
 if (typeof window !== 'undefined') {
-  ReactDOM.render(<Hello />, window.document.getElementById('reactEntry'));
-  ReactDOM.render(<Demo />, window.document.getElementById('reactMap'));
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(assignCurrentLocation);
-  } else {
-    ReactDOM.render(<Goodbye />, window.document.getElementById('reactEntry2'));
   }
+  map = ReactDOM.render(<Map key={API_KEY} />, window.document.getElementById('reactMap'));
+  ReactDOM.render(<Hello />, window.document.getElementById('helloWorld'));
+  ReactDOM.render(<SearchBar map={map} />, window.document.getElementById('searchBar'));
 }

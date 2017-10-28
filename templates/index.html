@@ -2,11 +2,12 @@
 </head>
 
 <body>
-  <div id="reactEntry"></div>
-  <div id="reactEntry2"></div>
+  <div id="helloWorld"></div>
+  <div id="searchBar"></div>
 
-  <div id="reactMap", item-width="100", item-height="100"></div>
+  <div id="reactMap"></div>
 
   <!-- Attach React components -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA&libraries=places"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='bundle.js') }}"></script>
 </body>
