@@ -22930,9 +22930,6 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.state.center);
-	      // console.log(this.props.center.lat);
-	      // console.log(this.props.center.lng);
 	      return _react2.default.createElement(_googleMapReact2.default, {
 	        center: this.state.center,
 	        defaultZoom: this.props.zoom,
@@ -26144,9 +26141,7 @@
 	        return (0, _reactPlacesAutocomplete.getLatLng)(results[0]);
 	      }).then(function (latLng) {
 	        return _this2.props.map.updateCenter(latLng);
-	      }).catch(function (error) {
-	        return console.error('Error', error);
-	      });
+	      }).catch();
 	    }
 	  }, {
 	    key: 'render',

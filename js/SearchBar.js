@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
     geocodeByAddress(this.state.address)
       .then(results => getLatLng(results[0]))
       .then(latLng => this.props.map.updateCenter(latLng))
-      .catch(error => console.error('Error', error));
+      .catch();
   }
 
   render() {

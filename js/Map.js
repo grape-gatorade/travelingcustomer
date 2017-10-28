@@ -15,14 +15,10 @@ class Map extends Component {
   }
 
   updateCenter(newCenter) {
-    this.setState({ center: newCenter }); 
+    this.setState({ center: newCenter });
   }
 
-
   render() {
-    console.log(this.state.center);
-    // console.log(this.props.center.lat);
-    // console.log(this.props.center.lng);
     return (
       <GoogleMapReact
         center={this.state.center}
