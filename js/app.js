@@ -1,25 +1,29 @@
 /* eslint-env browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CommunicationButton from './CommunicationButton';
 import Hello from './Hello';
 import Map from './Map';
 import SearchBar from './SearchBar';
 
-let map = null;
+
 const API_KEY = 'AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA';
 
-const assignCurrentLocation = function assignCurrentLocation(position) {
+const assignCurrentLocation = function assignCurrentLocation(position, mapToAssign) {
   const currentLocation = { lat: position.coords.latitude, lng: position.coords.longitude };
-  if (map !== null) {
-    map.updateCenter(currentLocation);
+  if (mapToAssign !== null) {
+    mapToAssign.updateCenter(currentLocation);
   }
 };
 
 if (typeof window !== 'undefined') {
+  const map = ReactDOM.render(<Map APIkey={API_KEY} />, window.document.getElementById('reactMap'));
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(assignCurrentLocation);
+    navigator.geolocation.getCurrentPosition((position) => {
+      assignCurrentLocation(position, map);
+    });
   }
-  map = ReactDOM.render(<Map key={API_KEY} />, window.document.getElementById('reactMap'));
   ReactDOM.render(<Hello />, window.document.getElementById('helloWorld'));
-  ReactDOM.render(<SearchBar map={map} />, window.document.getElementById('searchBar'));
+  const searchBar = ReactDOM.render(<SearchBar map={map} />, window.document.getElementById('searchBar'));
+  ReactDOM.render(<CommunicationButton searchBar={searchBar} />, window.document.getElementById('sendToServerButton'));
 }
