@@ -15,13 +15,14 @@ class SearchBar extends React.Component {
   }
 
   handleSelect(address, placeId) {
-
-    console.log("handle select called");
-    console.log(address)
-    console.log(placeId)
-    this.setState({ address, placeId });
+    const item = { name: address, id: placeId };
+    console.log('handle select called');
+    console.log(address);
+    console.log(placeId);
+    console.log(this.props.loclist.props.items);
+    this.props.loclist.updateList(item);
+    // this.setState({ address, placeId });
   }
-
 
 
   handleFormSubmit(event) {
@@ -38,6 +39,7 @@ class SearchBar extends React.Component {
     const inputProps = {
       value: this.state.address,
       onChange: this.onChange,
+      placeholder: 'Search Places...',
     };
 
 

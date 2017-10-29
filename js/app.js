@@ -5,6 +5,7 @@ import CommunicationButton from './CommunicationButton';
 import Hello from './Hello';
 import Map from './Map';
 import SearchBar from './SearchBar';
+import ListDisplay from './ListDisplay';
 
 
 const API_KEY = 'AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA';
@@ -24,6 +25,7 @@ if (typeof window !== 'undefined') {
     });
   }
   ReactDOM.render(<Hello />, window.document.getElementById('helloWorld'));
-  const searchBar = ReactDOM.render(<SearchBar map={map} />, window.document.getElementById('searchBar'));
+  const locationsList = ReactDOM.render(<ListDisplay />, window.document.getElementById('locations_list'))
+  const searchBar = ReactDOM.render(<SearchBar map={map} loclist={locationsList} />, window.document.getElementById('searchBar'));
   ReactDOM.render(<CommunicationButton searchBar={searchBar} />, window.document.getElementById('sendToServerButton'));
 }
