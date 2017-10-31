@@ -25,7 +25,7 @@ if (typeof window !== 'undefined') {
     });
   }
   ReactDOM.render(<Hello />, window.document.getElementById('helloWorld'));
-  const locationsList = ReactDOM.render(<ListDisplay />, window.document.getElementById('locations_list'))
+  const locationsList = ReactDOM.render(<ListDisplay />, window.document.getElementById('locations_list'));
   const searchBar = ReactDOM.render(<SearchBar map={map} loclist={locationsList} />, window.document.getElementById('searchBar'));
   ReactDOM.render(<CommunicationButton searchBar={searchBar} />, window.document.getElementById('sendToServerButton'));
 }
