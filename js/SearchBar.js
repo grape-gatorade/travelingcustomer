@@ -4,7 +4,7 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: 'Troy, NY' };
+    this.state = { address: '' };
     this.onChange = this.onChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);

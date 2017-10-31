@@ -4,7 +4,7 @@ class ListDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [{ name: 'P-chops', id: 'pchop id' }, { name: 'Walmard', id: 'wally id' }],
+      items: [],
       // items: this.props.items,
     };
     this.updateList = this.updateList.bind(this);
