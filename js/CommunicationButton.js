@@ -22,7 +22,7 @@ class CommunicationButton extends Component {
       <button
         type="submit"
         onClick={() => {
-          const sendData = { address: this.props.searchBar.state.address };
+          const sendData = { info: this.props.sendInfo };
           sendFetchRequest(sendData);
         }}
       >Talk to Server
