@@ -6,7 +6,7 @@ class PathStrategy(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def calculate_path(self):
+    def calculate_path(self, path_list):
         """ Function will return locations in recommended order of visiting """
         pass
     
