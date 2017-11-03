@@ -1,5 +1,6 @@
 /* eslint-env browser */
 import React, { Component } from 'react';
+import { Button } from 'react-bootstrap';
 
 const sendFetchRequest = function sendFetchRequest(data) {
   fetch('http://127.0.0.1:5000/', {
@@ -17,17 +18,37 @@ const sendFetchRequest = function sendFetchRequest(data) {
 };
 
 class CommunicationButton extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sendInfo: this.props.sendInfo,
+      text: this.props.text,
+    };
+  }
   render() {
     return (
-      <button
-        type="submit"
-        onClick={() => {
-          const sendData = { info: this.props.sendInfo };
-          sendFetchRequest(sendData);
-        }}
-      >Talk to Server
-      </button>);
+      <div>
+        <button
+          type="submit"
+          onClick={() => {
+            const sendData = { info: this.state.sendInfo };
+            sendFetchRequest(sendData);
+          }}
+        >{this.state.text}
+        </button>
+        <Button
+          onClick={() => {
+            const sendData = { info: this.state.sendInfo };
+            sendFetchRequest(sendData);
+          }}
+        >{this.state.text}
+        </Button>
+      </div>);
   }
 }
+
+CommunicationButton.defaultProps = {
+  text: 'Send to Server',
+};
 
 export default CommunicationButton;

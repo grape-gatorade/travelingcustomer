@@ -16,7 +16,6 @@ const assignCurrentLocation = function assignCurrentLocation(position, mapToAssi
     mapToAssign.updateCenter(currentLocation);
   }
 };
-
 if (typeof window !== 'undefined') {
   const map = ReactDOM.render(<Map APIkey={API_KEY} />, window.document.getElementById('reactMap'));
   if (navigator.geolocation) {
@@ -25,7 +24,7 @@ if (typeof window !== 'undefined') {
     });
   }
   ReactDOM.render(<Hello />, window.document.getElementById('helloWorld'));
-  const locationsList = ReactDOM.render(<ListDisplay />, window.document.getElementById('locations_list'));
-  const searchBar = ReactDOM.render(<SearchBar map={map} loclist={locationsList} />, window.document.getElementById('searchBar'));
+  const locationsList = ReactDOM.render(<ListDisplay map={map} />, window.document.getElementById('locations_list'));
+  ReactDOM.render(<SearchBar map={map} loclist={locationsList} />, window.document.getElementById('searchBar'));
   ReactDOM.render(<CommunicationButton />, window.document.getElementById('sendToServerButton'));
 }

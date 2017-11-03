@@ -17,9 +17,6 @@ class SearchBar extends React.Component {
   handleSelect(address, placeId) {
     const item = { name: address, id: placeId };
     console.log('handle select called');
-    console.log(address);
-    console.log(placeId);
-    console.log(this.props.loclist.props.items);
     this.props.loclist.updateList(item);
     // this.setState({ address, placeId });
   }

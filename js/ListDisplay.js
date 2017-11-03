@@ -12,10 +12,9 @@ class ListDisplay extends Component {
   }
   updateList(newItem) {
     console.log('updateList');
-    console.log(newItem.id);
     // this.state.items[newItem.name] = newItem.id;
     this.setState({ items: this.state.items.concat([newItem]) });
-    console.log(this.state.items);
+    this.props.map.updateLocationList(newItem);
   }
   render() {
     const list = this.state.items;
@@ -25,12 +24,12 @@ class ListDisplay extends Component {
         <ul>
           { list.map(item => <li key={item.id}>{item.name}</li>)}
         </ul>
-        <CommunicationButton sendInfo={list} />
+        <CommunicationButton sendInfo={list} text="Done" />
       </div>);
   }
 }
 ListDisplay.defaultProps = {
-  items: [{ name: 'P-chops', id: 'pchop id' }, { name: 'Walmard', id: 'wally id' }],
+  items: [],
 
 };
 export default ListDisplay;
