@@ -15,6 +15,7 @@ class Matrix(object):
             Default constructor
         """
         self._matrix = []
+        self._cannot_find = set([])
 
     def setup_distance_matrix(self, path_list, travel_type='driving'):
         """
@@ -28,6 +29,9 @@ class Matrix(object):
         if path_len == 0:
             self._matrix = []
             return
+        elif path_len == 1:
+            self._matrix = [[0]]
+            return
 
         #get google maps matrix
         gmaps = googlemaps.Client(key='AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA')
@@ -35,16 +39,37 @@ class Matrix(object):
                                             'imperial', datetime.now(), None, None, None, None)
         #double for loop that finds the edge weight
         new_matrix = []
+
+        
         num_rows = len(dist_matrix['rows'])
         for i in range(0, num_rows):
             new_distance_list = []
             location_row = dist_matrix['rows'][i]
             for j in range(0, num_rows):
-                duration_to_location = location_row['elements'][j]['duration']['value']
-                new_distance_list.append(duration_to_location) #new row adds weight
+                try:
+                    duration_to_location = location_row['elements'][j]['duration']['value']
+                    new_distance_list.append(duration_to_location) #new row adds weight
+
+                except KeyError:
+                    new_distance_list.append(-1)
             new_matrix.append(new_distance_list) #add new noes to master list
 
+
+        print new_matrix
+        indicies_to_remove = []
+        for x in range(0, len(new_matrix)):
+            if new_matrix[x].count(-1) == num_rows-1:
+                indicies_to_remove.append(x)
+
+        filtered_matrix = []
+        for ind in range(0, len(new_matrix)):
+            if ind not in indicies_to_remove:
+                filtered_matrix.append(new_matrix[ind])
+
+
+        
         self._matrix = new_matrix
+        
 
     #pylint: disable-msg=too-many-arguments
     #Justification: paths_per_node and count must be recursive parameters
@@ -60,6 +85,10 @@ class Matrix(object):
             count: current total of the sum of weight in paths_per_node
 
         """
+        length_path = len(array[source])
+        if length_path == 1:
+            return (array[source] , 0)
+
         shortest = max(array[source]) #can be no more than farthese neighbor
         index = -1
         for j in range(0, len(array[source])):
