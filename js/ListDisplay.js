@@ -18,13 +18,15 @@ class ListDisplay extends Component {
   }
   render() {
     const list = this.state.items;
+    const currentLocation = this.props.map.state.center;
+    const info = { places: list, start_loc: currentLocation };
     return (
       <div>
         <h1>Fork this List Display</h1>
         <ul>
           { list.map(item => <li key={item.id}>{item.name}</li>)}
         </ul>
-        <CommunicationButton sendInfo={list} text="Done" />
+        <CommunicationButton sendInfo={info} text="Done" />
       </div>);
   }
 }

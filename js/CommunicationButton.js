@@ -28,17 +28,9 @@ class CommunicationButton extends Component {
   render() {
     return (
       <div>
-        <button
-          type="submit"
-          onClick={() => {
-            const sendData = { info: this.state.sendInfo };
-            sendFetchRequest(sendData);
-          }}
-        >{this.state.text}
-        </button>
         <Button
           onClick={() => {
-            const sendData = { info: this.state.sendInfo };
+            const sendData = { info: this.props.sendInfo };
             sendFetchRequest(sendData);
           }}
         >{this.state.text}
