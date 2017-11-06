@@ -9,6 +9,7 @@ class ListDisplay extends Component {
       // items: this.props.items,
     };
     this.updateList = this.updateList.bind(this);
+    this.handleRecieveInfo = this.handleRecieveInfo.bind(this);
   }
   updateList(newItem) {
     console.log('updateList');
@@ -16,17 +17,28 @@ class ListDisplay extends Component {
     this.setState({ items: this.state.items.concat([newItem]) });
     this.props.map.updateLocationList(newItem);
   }
+  handleRecieveInfo(info) {
+    console.log('handleRecieveInfo', info.path);
+    this.setState({ items: info.path });
+  }
   render() {
     const list = this.state.items;
     const currentLocation = this.props.map.state.center;
     const info = { places: list, start_loc: currentLocation };
+    const comButton =
+      (<CommunicationButton
+        sendInfo={info}
+        onRecieve={this.handleRecieveInfo}
+        text="Done"
+      />);
+
     return (
       <div>
         <h1>Fork this List Display</h1>
         <ul>
           { list.map(item => <li key={item.id}>{item.name}</li>)}
         </ul>
-        <CommunicationButton sendInfo={info} text="Done" />
+        {comButton}
       </div>);
   }
 }
