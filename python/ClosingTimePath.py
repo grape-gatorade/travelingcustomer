@@ -1,7 +1,6 @@
 """ Contains the OptimalPath class, implementing the PathStrategy """
 from __future__ import print_function
 from python.PathStrategyInterface import PathStrategy
-from python.Location import Location
 
 
 class ClosingTimePath(PathStrategy):
@@ -15,6 +14,6 @@ class ClosingTimePath(PathStrategy):
         """
             Returns the ordered closing time path in ascending order.
         """
-        for item in path_list:
-        	location = Location(item)
-        	# print (location.generateClosingInfo())
+        pass
+        # for item in path_list:
+        # 	location = Location(item)

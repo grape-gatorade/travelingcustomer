@@ -3,22 +3,6 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 
-
-const AnyReactComponent = ({ text }) => (
-  <div style={{
-                position: 'relative',
-                color: 'white',
-                background: 'red',
-                height: 40,
-                width: 60,
-                top: -20,
-                left: -30,
-              }}
-  >
-    {text}
-  </div>
-);
-
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -41,9 +25,7 @@ class Map extends Component {
   updateLocationList(newLocation) {
     console.log('updateLocation ');
     // this.setState({ locationsList: this.state.items.concat([newLocation]) });
-    this.setState((prevState, props) => {
-      return { locationList: prevState.locationList.concat([newLocation]) };
-    });
+    this.setState({ locationList: this.state.locationList.concat([newLocation]) });
   }
 
   render() {

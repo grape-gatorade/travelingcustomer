@@ -2,7 +2,6 @@
 from __future__ import print_function
 from flask import Flask, render_template, request, jsonify
 from python.OptimalPath import OptimalPath
-from python.ClosingTimePath import ClosingTimePath
 from python.RouteContext import RouteContext
 
 # Constants
@@ -13,7 +12,7 @@ APP = Flask(__name__)
 def home_page():
     """ Main page of site """
     if request.method == 'POST':
-        print ("got post")
+        print("got post")
         content = request.get_json()
 
         location_list = parse_request(content)
@@ -25,7 +24,7 @@ def home_page():
         print(solution)
 
         return jsonify(construct_response(content, solution[0], solution[1]))
-    else:
+    if request.method == 'GET':
         return render_template('index.html')
 
 def parse_request(json_info):
@@ -40,9 +39,14 @@ def parse_request(json_info):
     return location_list
 
 def construct_response(json_info, route, total_time):
+    """
+        Given the json data from the server,
+        return the location data for all locations in the right order.
+    """
     response = {'total_time':total_time}
 
-    places_in_order = [ (json_info['info']['start_loc'] if i == 0 else json_info['info']['places'][i - 1]) for i in route]
+    places_in_order = [({ 'name': 'Start Location', 'latLng': { 'lat': json_info['info']['start_loc']['lat'], 'lng': json_info['info']['start_loc']['lng']}} if i == 0
+                        else json_info['info']['places'][i - 1]) for i in route]
 
     response['path'] = places_in_order
 

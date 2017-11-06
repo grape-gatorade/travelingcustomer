@@ -96,16 +96,18 @@ class Matrix(object):
             for j in range(0, num_rows):
                 try:
                     duration_to_location = location_row['elements'][j]['duration']['value']
-                    
-                    new_distance_list.append(duration_to_location if i != j else 0) #new row adds weight
+
+                    #new row adds weight
+                    new_distance_list.append(duration_to_location if i != j else 0)
 
                 except KeyError:
                     new_distance_list.append(-1)
                     print("Not Possible")
-            
-            new_matrix.append(new_distance_list) #add new noes to master list
+
+            new_matrix.append(new_distance_list) #add new nodes to master list
             print("Row " + str(i) + " completed")
-            # There is a limit on the number of elements requested per second to google maps. 
+
+            # There is a limit on the number of elements requested per second to google maps.
             # We sleep for a second if we will be making large requests to the API.
             if len(path_list) >= 10:
                 time.sleep(1.1)
@@ -137,7 +139,7 @@ class Matrix(object):
         min_cost_map = {}
         parent_map = {}
 
-        # all sets will contain a list of sets made up of all indices exluding 0, 
+        # all sets will contain a list of sets made up of all indices exluding 0,
         # all_sets[0] is the empty set
         all_sets = subsets(range(1, len(self._matrix)))
         print(all_sets)
@@ -148,7 +150,7 @@ class Matrix(object):
         for vertex_set in all_sets:
             # Loop over the vertices. We will make an index so long as the vertex is not in the set.
             for current_vertex in range(1, len(self._matrix)):
-                if (current_vertex in vertex_set):
+                if current_vertex in vertex_set:
                     continue
                 # print("Current Vertex:")
                 # print(current_vertex)
@@ -166,22 +168,23 @@ class Matrix(object):
                     # print("Prev Vertex:")
                     # print(prev_vertex)
 
-                    # cost is the cost of coming from the chosen previous vertex to the current vertex,
-                    # traversing over all the other vertices in vertex set
-                    cost = self._matrix[prev_vertex][current_vertex] + self.get_cost(copied_set, prev_vertex, min_cost_map)
+                    # cost is the cost of coming from the chosen previous vertex,
+                    # to the current vertex traversing over all the other vertices in vertex set
+                    cost = (self._matrix[prev_vertex][current_vertex] +
+                            self.get_cost(copied_set, prev_vertex, min_cost_map))
                     if cost < min_cost:
                         min_cost = cost
                         min_prev_vertex = prev_vertex
-                    
+
                 # Handling the empty set, the Cost will be distance from 0 to the current vertex
                 # Since our current set is empty we do not travel through any other vertices
                 # (empty sequences are false)
                 if not vertex_set:
                     min_cost = self._matrix[0][current_vertex]
-                
+
                 min_cost_map[index] = min_cost
                 parent_map[index] = min_prev_vertex
-        
+
         # Final Stage of TSP, Now for 0 as the node to reach from 0
         final_min_cost = maxsize
         prev_vertex = -1

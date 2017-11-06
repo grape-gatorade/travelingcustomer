@@ -1,40 +1,53 @@
+"""
+    This Module contains the location class,
+    used to keep track of all location information.
+"""
 from __future__ import print_function
-import googlemaps
 from datetime import datetime
+import googlemaps
+
 class Location(object):
-
-	def __init__(self, new_id):
-		self.__id = new_id
-		self.__closing_time = 0
-		self.__24hours = False
-
-
-	def __lt__(self, other):
-		return self.__closing_time < other.__closing_time
-
-
-	def setClosingTime(self):
-	 	gmaps = googlemaps.Client(key='AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA')
-	 	location_info = gmaps.place(self.__id, 'English')
-	 	now = datetime.now()
-	 	weekday = now.strftime("%w")
-	 	# print (weekday)
-
-	 	try:
-	 		print (location_info['result']['opening_hours']['periods'][int(weekday)]['close']['time'])
-
-	 	except IndexError:
-	 		if location_info['result']['opening_hours']['periods'][0]['open']['day'] == 0 and location_info['result']['opening_hours']['periods'][0]['open']['time'] == '0000':
-	 			self.__24hours = True
-	 		else:
-	 			self.__closing_time = -1
-
-	 	except KeyError:
-	 		if location_info['result']['opening_hours']['periods'][0]['open']['day'] == 0 and location_info['result']['opening_hours']['periods'][0]['open']['time'] == '0000':
-	 			self.__24hours = True
-	 		else:
-	 			self.__closing_time = -1
+    """
+        Location contains the id, closing time,
+        and whether or not the location is open 24 hours
+    """
+    def __init__(self, new_id):
+        self.__id = new_id
+        self.__closing_time = 0
+        self.__24hours = False
 
 
+    def __lt__(self, other):
+        return self.__closing_time < other.get_closing_time
 
-	 	print (self.__24hours)
+
+    def set_closing_time(self):
+        """
+            Make Google Maps call to determine the closing time for this location.
+        """
+        gmaps = googlemaps.Client(key='AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA')
+        location_info = gmaps.place(self.__id, 'English')
+        now = datetime.now()
+        weekday = now.strftime("%w")
+
+        opening_hours = location_info['result']['opening_hours']
+        try:
+            print(opening_hours['periods'][int(weekday)]['close']['time'])
+
+        except IndexError:
+            if opening_hours['periods'][0]['open']['day'] == 0 and opening_hours['periods'][0]['open']['time'] == '0000':
+                self.__24hours = True
+            else:
+                self.__closing_time = -1
+
+        except KeyError:
+            if opening_hours['periods'][0]['open']['day'] == 0 and opening_hours['periods'][0]['open']['time'] == '0000':
+                self.__24hours = True
+            else:
+                self.__closing_time = -1
+
+        print(self.__24hours)
+
+    def get_closing_time(self):
+        """ Return closing time """
+        return self.__closing_time
