@@ -34,7 +34,7 @@ class Map extends Component {
   }
 
   updateCenter(newCenter) {
-    console.log('updateCenter ' + newCenter.lat + ' ' + newCenter.lng);
+    console.log('updateCenter ', newCenter.lat, ' ', newCenter.lng);
     this.setState({ center: newCenter });
   }
 
@@ -47,6 +47,7 @@ class Map extends Component {
   }
 
   render() {
+    const markers = this.state.locationList;
     return (
       <div>
         <GoogleMapReact
@@ -60,8 +61,17 @@ class Map extends Component {
           <Marker
             lat={this.state.center.lat}
             lng={this.state.center.lng}
-            text="defined"
+            text="current location"
           />
+          {
+            markers.map(marker => (
+              <Marker
+                lat={marker.latLng.lat}
+                lng={marker.latLng.lng}
+                text={marker.name}
+              />
+            ))
+          }
         </GoogleMapReact>
       </div>
     );

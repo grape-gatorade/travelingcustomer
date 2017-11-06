@@ -36,7 +36,7 @@ def parse_request(json_info):
 
     location_list = [(json_info['info']['start_loc']['lat'], json_info['info']['start_loc']['lng'])]
     for place_dictionary in json_info['info']['places']:
-        location_list.append((place_dictionary['lat'], place_dictionary['lng']))
+        location_list.append((place_dictionary['latLng']['lat'], place_dictionary['latLng']['lng']))
     return location_list
 
 def construct_response(json_info, route, total_time):

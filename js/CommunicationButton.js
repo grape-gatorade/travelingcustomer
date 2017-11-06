@@ -21,7 +21,6 @@ class CommunicationButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sendInfo: this.props.sendInfo,
       text: this.props.text,
     };
   }
