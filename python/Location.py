@@ -35,13 +35,15 @@ class Location(object):
             print(opening_hours['periods'][int(weekday)]['close']['time'])
 
         except IndexError:
-            if opening_hours['periods'][0]['open']['day'] == 0 and opening_hours['periods'][0]['open']['time'] == '0000':
+            open_info = opening_hours['periods'][0]['open']
+            if open_info['day'] == 0 and open_info['time'] == '0000':
                 self.__24hours = True
             else:
                 self.__closing_time = -1
 
         except KeyError:
-            if opening_hours['periods'][0]['open']['day'] == 0 and opening_hours['periods'][0]['open']['time'] == '0000':
+            open_info = opening_hours['periods'][0]['open']
+            if open_info['day'] == 0 and open_info['time'] == '0000':
                 self.__24hours = True
             else:
                 self.__closing_time = -1

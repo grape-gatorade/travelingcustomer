@@ -65,8 +65,6 @@ class Matrix(object):
             travel_type:string indicating travel type
             valid values for travel type are 'driving, 'walking', or 'transit'
         """
-        print ("Creating Distance Matrix...")
-        print (path_list)
         path_len = len(path_list)
         if path_len == 0:
             self._matrix = []
@@ -102,22 +100,18 @@ class Matrix(object):
 
                 except KeyError:
                     new_distance_list.append(-1)
-                    print("Not Possible")
 
             new_matrix.append(new_distance_list) #add new nodes to master list
-            print("Row " + str(i) + " completed")
 
             # There is a limit on the number of elements requested per second to google maps.
             # We sleep for a second if we will be making large requests to the API.
             if len(path_list) >= 10:
                 time.sleep(1.1)
 
-        print("Begin Printing Matrix:")
-        print (new_matrix)
         indicies_to_remove = []
-        for x in range(0, len(new_matrix)):
-            if new_matrix[x].count(-1) == num_rows-1:
-                indicies_to_remove.append(x)
+        for i in range(0, len(new_matrix)):
+            if new_matrix[i].count(-1) == num_rows-1:
+                indicies_to_remove.append(i)
 
         filtered_matrix = []
         for ind in range(0, len(new_matrix)):
@@ -134,7 +128,6 @@ class Matrix(object):
             This implementation utilizes a helper Index class to connect a vertex I reachable
             From vertex 0 to the set of vertices passed over to reach vertex I.
         """
-        print ("Beginning Matrix Solve...")
 
         min_cost_map = {}
         parent_map = {}
@@ -142,7 +135,7 @@ class Matrix(object):
         # all sets will contain a list of sets made up of all indices exluding 0,
         # all_sets[0] is the empty set
         all_sets = subsets(range(1, len(self._matrix)))
-        print(all_sets)
+
         # final_set contains only the set that contains all elements except 0
         final_set = all_sets.pop()
 
@@ -165,8 +158,6 @@ class Matrix(object):
                 # Copy the set to avoid shenanigans while iterating over set.
                 copied_set = set(vertex_set)
                 for prev_vertex in vertex_set:
-                    # print("Prev Vertex:")
-                    # print(prev_vertex)
 
                     # cost is the cost of coming from the chosen previous vertex,
                     # to the current vertex traversing over all the other vertices in vertex set

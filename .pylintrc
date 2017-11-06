@@ -5,5 +5,10 @@
 #   R0903 = Too few public methods
 #   R0913 = Too many arguments
 #   W0105 = Pointless string statement
+#   R0914 = Too many local variables
 
-disable=R0903,R0201,W0105,R0913
+# PyLint's module importation is unreliable
+#   F0401 = Unable to import module
+#   W0402 = Uses of a deprecated module
+
+disable=R0903,R0201,W0105,R0913,R0914,F0401,W0402

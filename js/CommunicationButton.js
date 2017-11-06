@@ -8,7 +8,6 @@ class CommunicationButton extends Component {
     super(props);
     this.state = {
       text: this.props.text,
-      fetchedinfo: '',
     };
     this.sendFetchRequest = this.sendFetchRequest.bind(this);
   }
@@ -23,9 +22,6 @@ class CommunicationButton extends Component {
     }).then((response) => {
       response.json().then((jsonData) => {
         console.log('send fetch', jsonData);
-        this.setState({
-          fetchedinfo: jsonData,
-        });
         this.props.onRecieve(jsonData);
       });
     });
