@@ -45,8 +45,17 @@ def construct_response(json_info, route, total_time):
     """
     response = {'total_time':total_time}
 
-    places_in_order = [({ 'name': 'Start Location', 'latLng': { 'lat': json_info['info']['start_loc']['lat'], 'lng': json_info['info']['start_loc']['lng']}} if i == 0
-                        else json_info['info']['places'][i - 1]) for i in route]
+    places_in_order = []
+    for i in route:
+        if i == 0:
+            lat_lng_dict = {}
+            lat_lng_dict['lat'] = json_info['info']['start_loc']['lat']
+            lat_lng_dict['lng'] = json_info['info']['start_loc']['lng']
+            
+            place = { 'name': 'Start Location', 'latLng': lat_lng_dict }
+            places_in_order.append(place)
+        else:
+            places_in_order.append(json_info['info']['places'][i - 1])
 
     response['path'] = places_in_order
 
