@@ -34,7 +34,7 @@ class ListDisplay extends Component {
 
     return (
       <div>
-        <h1>Fork this List Display</h1>
+        <h1>Locations:</h1>
         <ul>
           { list.map(item => <li key={item.id}>{item.name}</li>)}
         </ul>
