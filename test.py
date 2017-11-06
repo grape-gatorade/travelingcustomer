@@ -2,7 +2,7 @@
 import datetime
 import googlemaps
 
-from python.OptimalPath import OptimalPath
+# from python.OptimalPath import OptimalPath
 
 def test_strategy():
     """ Test function for strategy design pattern implementation """
