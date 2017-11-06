@@ -1,3 +1,9 @@
 [MESSAGE CONTROL]
 
-disable=too-few-public-methods
+# Pointless whinging
+#   R0201 = Method could be a function
+#   R0903 = Too few public methods
+#   R0913 = Too many arguments
+#   W0105 = Pointless string statement
+
+disable=R0903,R0201,W0105,R0913

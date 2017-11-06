@@ -8,7 +8,7 @@ import SearchBar from './SearchBar';
 import ListDisplay from './ListDisplay';
 
 
-const API_KEY = 'AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA';
+const API_KEY = 'AIzaSyBuGbc491h07Hp-ao-6o-dkLmUUX9OG_ho';
 
 const assignCurrentLocation = function assignCurrentLocation(position, mapToAssign) {
   const currentLocation = { lat: position.coords.latitude, lng: position.coords.longitude };

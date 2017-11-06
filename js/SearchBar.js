@@ -7,7 +7,6 @@ class SearchBar extends React.Component {
     this.state = { address: '' };
     this.onChange = this.onChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   onChange(address) {
@@ -15,21 +14,20 @@ class SearchBar extends React.Component {
   }
 
   handleSelect(address, placeId) {
-    const item = { name: address, id: placeId };
     console.log('handle select called');
-    this.props.loclist.updateList(item);
-    // this.setState({ address, placeId });
-  }
-
-
-  handleFormSubmit(event) {
-    event.preventDefault();
-
-    // Move to point on map.
-    geocodeByAddress(this.state.address)
+    geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => this.props.map.updateCenter(latLng))
-      .catch();
+      .then((latLng) => {
+        const item = {
+          name: address,
+          id: placeId,
+          lat: latLng.lat,
+          lng: latLng.lng,
+        };
+        this.props.loclist.updateList(item);
+      });
+
+    this.setState({ address: '' });
   }
 
   render() {
@@ -45,15 +43,12 @@ class SearchBar extends React.Component {
     };
 
     return (
-      <form
-        onSubmit={this.handleFormSubmit}
-      >
+      <form>
         <PlacesAutocomplete
           inputProps={inputProps}
           options={options}
           onSelect={this.handleSelect}
         />
-        <button type="submit">Submit</button>
       </form>
     );
   }

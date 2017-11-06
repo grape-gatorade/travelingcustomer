@@ -1,3 +1,4 @@
+from __future__ import print_function
 import googlemaps
 from datetime import datetime
 class Location(object):
@@ -9,7 +10,7 @@ class Location(object):
 
 
 	def __lt__(self, other):
-		return self._closing_time < other._closing_time
+		return self.__closing_time < other.__closing_time
 
 
 	def setClosingTime(self):
@@ -17,10 +18,10 @@ class Location(object):
 	 	location_info = gmaps.place(self.__id, 'English')
 	 	now = datetime.now()
 	 	weekday = now.strftime("%w")
-	 	print weekday
+	 	# print (weekday)
 
 	 	try:
-	 		print location_info['result']['opening_hours']['periods'][int(weekday)]['close']['time']
+	 		print (location_info['result']['opening_hours']['periods'][int(weekday)]['close']['time'])
 
 	 	except IndexError:
 	 		if location_info['result']['opening_hours']['periods'][0]['open']['day'] == 0 and location_info['result']['opening_hours']['periods'][0]['open']['time'] == '0000':
@@ -36,4 +37,4 @@ class Location(object):
 
 
 
-	 	print self.__24hours
+	 	print (self.__24hours)

@@ -1,4 +1,5 @@
 """ Contains the OptimalPath class, implementing the PathStrategy """
+from __future__ import print_function
 from python.PathStrategyInterface import PathStrategy
 from python.Location import Location
 
@@ -16,4 +17,4 @@ class ClosingTimePath(PathStrategy):
         """
         for item in path_list:
         	location = Location(item)
-        	print location.generateClosingInfo()
+        	# print (location.generateClosingInfo())
