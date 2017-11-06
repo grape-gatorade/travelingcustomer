@@ -1,4 +1,5 @@
-var webpack = require('webpack');  
+var webpack = require('webpack');
+
 module.exports = {  
   entry: [
     "./js/app.js"
@@ -8,6 +9,15 @@ module.exports = {
     filename: "bundle.js"
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js?$/,
+        loader: 'eslint-loader',
+        options: {
+          fix: true,
+        }
+      }
+    ],
     loaders: [
       {
         test: /\.js?$/,

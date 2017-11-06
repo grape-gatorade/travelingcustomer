@@ -21,18 +21,16 @@ Thumbs.db
 
 # NPM packages folder.
 node_modules/
+package-lock.json
+/static/bundle.js
 
 # Bower components
 bower_components/
 
 # virtualenv
 .venv
+.venv2
 
-# Brunch folder for temporary files.
-tmp/
-
-# Bower
-bower_components
-
-#Gulp
-node_modules
+#Python cache
+__pycache__/
+*.pyc
