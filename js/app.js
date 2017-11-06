@@ -1,7 +1,7 @@
 /* eslint-env browser */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CommunicationButton from './CommunicationButton';
+import GoogleMapsShareButton from './GoogleMapsShareButton';
 import Hello from './Hello';
 import Map from './Map';
 import SearchBar from './SearchBar';
@@ -26,5 +26,5 @@ if (typeof window !== 'undefined') {
   ReactDOM.render(<Hello />, window.document.getElementById('helloWorld'));
   const locationsList = ReactDOM.render(<ListDisplay map={map} />, window.document.getElementById('locations_list'));
   ReactDOM.render(<SearchBar map={map} loclist={locationsList} />, window.document.getElementById('searchBar'));
-  ReactDOM.render(<CommunicationButton />, window.document.getElementById('sendToServerButton'));
+  ReactDOM.render(<GoogleMapsShareButton text="Send Path To Google Maps" />, window.document.getElementById('sendToServerButton'));
 }
