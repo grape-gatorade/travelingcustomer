@@ -15,9 +15,18 @@ class SearchBar extends React.Component {
   }
 
   handleSelect(address, placeId) {
-    const item = { name: address, id: placeId };
+    // const item = { name: address, id: placeId };
     console.log('handle select called');
-    this.props.loclist.updateList(item);
+    // this.props.loclist.updateList(item);
+
+    geocodeByAddress(address).then(results => getLatLng(results[0]))
+      .then((latLng) => {
+        console.log('Success', latLng);
+        const x = { name: address, id: placeId, latLng };
+        this.props.loclist.updateList(x);
+      })
+      .catch(error => console.error('Error', error));
+    // console.log('latlng', latlng);
     // this.setState({ address, placeId });
   }
 
