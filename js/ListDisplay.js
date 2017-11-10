@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CommunicationButton from './CommunicationButton';
 import ListItem from './ListItem';
+import styles from '../CSS/Thumbnail.css';
 
 class ListDisplay extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class ListDisplay extends Component {
       />);
     // Dead code: <li key={item.id}>{item.name}</li>
     return (
-      <div>
+      <div style={styles.list}>
         <h1>Locations:</h1>
         <ul>
           { list.map(item => (

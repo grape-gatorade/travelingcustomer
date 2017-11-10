@@ -1,8 +1,10 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 <head>
+  <div id="helloWorld"></div>
 </head>
 
 <body>
-  <div id="helloWorld"></div>
+
   <div id="searchBar"></div>
   <div id="locations_list"></div>
   <div id="reactMap"></div>
@@ -11,7 +13,6 @@
   <div id="sendToServerButton"> Server Button Should BE HERE</div>
 
   <!-- Attach React components -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA&libraries=places"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='bundle.js') }}"></script>
 </body>

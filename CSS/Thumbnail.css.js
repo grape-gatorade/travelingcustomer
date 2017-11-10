@@ -10,6 +10,11 @@ export default {
   },
   list: {
     borderRadius: '3px',
-    backgroundColor: 'gray',
+  },
+
+  welcome: {
+    textAlign: 'center',
+    backgroundColor: '#36454F',
+    color: 'white',
   },
 };
