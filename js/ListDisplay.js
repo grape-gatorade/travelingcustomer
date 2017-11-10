@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CommunicationButton from './CommunicationButton';
+import ListItem from './ListItem';
 
 class ListDisplay extends Component {
   constructor(props) {
@@ -31,12 +32,16 @@ class ListDisplay extends Component {
         onRecieve={this.handleRecieveInfo}
         text="Done"
       />);
-
+    // Dead code: <li key={item.id}>{item.name}</li>
     return (
       <div>
         <h1>Locations:</h1>
         <ul>
-          { list.map(item => <li key={item.id}>{item.name}</li>)}
+          { list.map(item => (
+            <div key={item.id}>
+              <ListItem key={item.id} name={item.name} />
+            </div>
+          ))}
         </ul>
         {comButton}
       </div>);
