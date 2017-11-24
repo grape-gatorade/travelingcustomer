@@ -1,24 +1,38 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import shouldPureComponentUpdate from 'react-pure-render/function';
 
-const AnyReactComponent = ({ text }) => (
-  <div style={{
-                position: 'relative',
-                color: 'black',
-                background: 'green',
-                height: 5,
-                width: 5,
-              }}
-  >
-    {text}
-  </div>
-);
+import { markerStyle, markerStyleHover } from './marker_style_with_hover';
+
 class Marker extends Component {
+  static propTypes = {
+    // use hover from controllable
+    hover: PropTypes.bool,
+    text: PropTypes.string,
+    number: PropTypes.string,
+  };
+
+  static defaultProps = {
+    hover: null,
+    text: '',
+    number: '0',
+  }
+
+  static defaultProps = {};
+
+  shouldComponentUpdate = shouldPureComponentUpdate;
+
   render() {
+    const style = this.props.hover ? markerStyle : markerStyleHover;
+
     return (
-      <AnyReactComponent
-        text={this.props.text}
-      />);
+      <div className="hint--html hint--top" style={style}>
+        <div>{this.props.number}</div>
+        <div className="hint__content">
+          {this.props.text}
+        </div>
+      </div>
+    );
   }
 }
-
 export default Marker;

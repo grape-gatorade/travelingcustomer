@@ -44,13 +44,15 @@ class Map extends Component {
             lat={this.state.center.lat}
             lng={this.state.center.lng}
             text="current location"
+            number="0"
           />
           {
-            markers.map(marker => (
+            markers.map((marker, index) => (
               <Marker
                 lat={marker.latLng.lat}
                 lng={marker.latLng.lng}
                 text={marker.name}
+                number={(index + 1).toString()}
               />
             ))
           }
@@ -62,7 +64,7 @@ class Map extends Component {
 
 Map.defaultProps = {
   center: { lat: 59.95, lng: 30.33 },
-  zoom: 11,
+  zoom: 12,
   style: { width: '50%', height: '50%', position: 'relative' },
   APIkey: 'AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA',
   locationList: [],
