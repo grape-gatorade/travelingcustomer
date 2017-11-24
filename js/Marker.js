@@ -19,7 +19,6 @@ class Marker extends Component {
   }
 
   static defaultProps = {};
-
   shouldComponentUpdate = shouldPureComponentUpdate;
 
   render() {
