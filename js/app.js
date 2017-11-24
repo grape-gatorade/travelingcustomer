@@ -1,4 +1,5 @@
 /* eslint-env browser */
+import 'html-hint/dist/html-hint.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GoogleMapsShareButton from './GoogleMapsShareButton';
@@ -6,7 +7,6 @@ import Hello from './Hello';
 import Map from './Map';
 import SearchBar from './SearchBar';
 import ListDisplay from './ListDisplay';
-
 
 const API_KEY = 'AIzaSyBuGbc491h07Hp-ao-6o-dkLmUUX9OG_ho';
 

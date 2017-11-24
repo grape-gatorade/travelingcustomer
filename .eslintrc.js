@@ -11,5 +11,7 @@ module.exports = {
         "react/prop-types": 0,
         "linebreak-style": 0,
         "react/no-render-return-value": 0,
-     }
+        "no-underscore-dangle": 0,
+     },
+     "parser": "babel-eslint"
    };

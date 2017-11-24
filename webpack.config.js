@@ -22,13 +22,19 @@ module.exports = {
       {
         test: /\.js?$/,
         loader: 'babel-loader',
+        cacheDirectory: true,
         query: {
-          presets: ['es2015', 'react']
+          plugins: ['transform-decorators-legacy'],
+          presets: ['es2015', 'stage-0', 'react']
         },
         exclude: /node_modules/
-      }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css!',
+      },
     ]
   },
   plugins: [
-  ]
+  ],
 };
