@@ -3,6 +3,7 @@ from __future__ import print_function
 from flask import Flask, render_template, request, jsonify
 from python.OptimalPath import OptimalPath
 from python.RouteContext import RouteContext
+from python.ClosingTimePath import ClosingTimePath
 
 # Constants
 APP = Flask(__name__)
@@ -14,15 +15,20 @@ def home_page():
     if request.method == 'POST':
         print("got post")
         content = request.get_json()
+        print (content)
 
         location_list = parse_request(content)
+        list_of_id = id_parsing(content)
 
         optimal_path = OptimalPath()
         context = RouteContext(optimal_path)
         solution = context.compute_route(location_list)
 
-        print(solution)
-
+        closing_path= ClosingTimePath()
+        context2 = RouteContext(closing_path)
+        solution2 = context2.compute_route(list_of_id)
+        print (solution2)
+        
         return jsonify(construct_response(content, solution[0], solution[1]))
     if request.method == 'GET':
         return render_template('index.html')
@@ -36,7 +42,18 @@ def parse_request(json_info):
     location_list = [(json_info['info']['start_loc']['lat'], json_info['info']['start_loc']['lng'])]
     for place_dictionary in json_info['info']['places']:
         location_list.append((place_dictionary['latLng']['lat'], place_dictionary['latLng']['lng']))
+
     return location_list
+
+def id_parsing(json_info):
+    """
+        Returns a list containing the unique location id for each location
+    """
+    id_list=[]
+    for place_dictionary in json_info['info']['places']:
+        id_list.append(place_dictionary['id'])
+
+    return id_list
 
 def construct_response(json_info, route, total_time):
     """
