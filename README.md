@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/grape-gatorade/travelingcustomer.svg?branch=front-end-display)](https://travis-ci.org/grape-gatorade/travelingcustomer)
+[![Build Status](https://travis-ci.org/grape-gatorade/travelingcustomer.svg?branch=map-view-backend)](https://travis-ci.org/grape-gatorade/travelingcustomer)
 
 
 ## Prerequisites
