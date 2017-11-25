@@ -108,16 +108,10 @@ class Matrix(object):
             if len(path_list) >= 10:
                 time.sleep(1.1)
 
-        indicies_to_remove = []
         for i in range(0, len(new_matrix)):
-            if new_matrix[i].count(-1) == num_rows-1:
-                indicies_to_remove.append(i)
-
-        filtered_matrix = []
-        for ind in range(0, len(new_matrix)):
-            if ind not in indicies_to_remove:
-                filtered_matrix.append(new_matrix[ind])
-
+            if new_matrix[i].count(-1) > 0:
+                self._matrix = []
+                return
 
         self._matrix = new_matrix
 
@@ -222,3 +216,9 @@ class Matrix(object):
         cost = cost_map[index]
         vertex_set.add(vertex)
         return cost
+
+    def is_valid_matrix(self):
+        """
+            Check that the matrix initialized is valid. true if valid, false
+        """
+        return bool(self._matrix)

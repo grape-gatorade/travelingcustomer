@@ -18,6 +18,9 @@ class OptimalPath(PathStrategy):
             path_list = []
         opt_matrix = Matrix()
         opt_matrix.setup_distance_matrix(path_list)
+        if not opt_matrix.is_valid_matrix():
+            return -1
+
         return_tuple = opt_matrix.matrix_solve()
 
         return return_tuple

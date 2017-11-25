@@ -26,12 +26,12 @@ class Location(object):
 
 
 
-    def __cmp__(self, other):
+    def __lt__(self, other):
         """
             Comparator for closing times
             We base sorting on how far off closing time is from current time
         """
-        return cmp(self.get_time_diff(), other)
+        return self.get_time_diff() <  other.get_time_diff()
 
 
     def set_closing_time(self):

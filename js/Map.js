@@ -28,8 +28,13 @@ class Map extends Component {
     this.setState({ locationList: this.state.locationList.concat([newLocation]) });
   }
 
+  changeLocationList(newList) {
+    this.setState({ locationList: newList });
+  }
+
   render() {
     const markers = this.state.locationList;
+    console.log('Called');
     return (
       <div>
         <GoogleMapReact
@@ -44,7 +49,7 @@ class Map extends Component {
             lat={this.state.center.lat}
             lng={this.state.center.lng}
             text="current location"
-            number="0"
+            number="1"
           />
           {
             markers.map((marker, index) => (
@@ -52,7 +57,7 @@ class Map extends Component {
                 lat={marker.latLng.lat}
                 lng={marker.latLng.lng}
                 text={marker.name}
-                number={(index + 1).toString()}
+                number={(index + 2).toString()}
               />
             ))
           }

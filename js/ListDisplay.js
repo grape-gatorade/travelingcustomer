@@ -19,7 +19,8 @@ class ListDisplay extends Component {
   }
   handleRecieveInfo(info) {
     console.log('handleRecieveInfo', info.path);
-    this.setState({ items: info.path });
+    this.setState({ items: info.optimal.path });
+    this.props.map.changeLocationList(info.optimal.path.slice(1, info.optimal.path.length - 1));
   }
   render() {
     const list = this.state.items;

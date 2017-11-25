@@ -15,21 +15,31 @@ def home_page():
     if request.method == 'POST':
         print("got post")
         content = request.get_json()
-        print (content)
 
         location_list = parse_request(content)
         list_of_id = id_parsing(content)
 
+        solution_dictionary = {}
+
         optimal_path = OptimalPath()
         context = RouteContext(optimal_path)
         solution = context.compute_route(location_list)
+        if solution == -1:
+            solution_dictionary['path_found'] = False
+            solution_dictionary['optimal'] = []
+        else:
+            solution_dictionary['path_found'] = True
+            solution_dictionary['optimal'] = construct_optimal_response(content, solution[0], solution[1])
 
-        closing_path= ClosingTimePath()
+        closing_path = ClosingTimePath()
         context2 = RouteContext(closing_path)
         solution2 = context2.compute_route(list_of_id)
-        print (solution2)
-        
-        return jsonify(construct_response(content, solution[0], solution[1]))
+        solution_dictionary['closing_time'] = construct_closing_time_response(content, solution2)
+        solution_dictionary['closed_stores'] = True if solution2[2] else False
+
+        print(solution_dictionary)
+
+        return jsonify(solution_dictionary)
     if request.method == 'GET':
         return render_template('index.html')
 
@@ -55,7 +65,7 @@ def id_parsing(json_info):
 
     return id_list
 
-def construct_response(json_info, route, total_time):
+def construct_optimal_response(json_info, route, total_time):
     """
         Given the json data from the server,
         return the location data for all locations in the right order.
@@ -77,6 +87,31 @@ def construct_response(json_info, route, total_time):
     response['path'] = places_in_order
 
     return response
+
+def construct_closing_time_response(json_info, solution):
+    """
+        create appropriate dictionary for closing time solution
+    """
+
+    response = {}
+
+    places_in_order = [{'name': 'Start Location', 'latLng': {'lat':json_info['info']['start_loc']['lat'], 'lng':json_info['info']['start_loc']['lng']}}]
+    for i in solution[3]:
+        places_in_order.append(json_info['info']['places'][i[0]])
+
+
+    for i in solution[0]:
+        places_in_order.append(json_info['info']['places'][i])
+
+    places_in_order.append([{'name': 'Start Location', 'latLng': {'lat':json_info['info']['start_loc']['lat'], 'lng':json_info['info']['start_loc']['lng']}}])
+
+
+    response['path'] = places_in_order
+
+    return response
+
+
+
 
 
 if __name__ == '__main__':
