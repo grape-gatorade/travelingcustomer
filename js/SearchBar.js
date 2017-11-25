@@ -1,5 +1,7 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { Form } from 'react-bootstrap';
+
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -32,6 +34,13 @@ class SearchBar extends React.Component {
   }
 
   render() {
+    const myStyles = {
+      root: { position: 'absolute' },
+      input: { width: '100%' },
+      autocompleteContainer: { backgroundColor: 'green' },
+      autocompleteItem: { color: 'black' },
+      autocompleteItemActive: { color: 'blue' },
+    };
     const inputProps = {
       value: this.state.address,
       onChange: this.onChange,
@@ -49,6 +58,7 @@ class SearchBar extends React.Component {
           inputProps={inputProps}
           options={options}
           onSelect={this.handleSelect}
+          styles={myStyles}
         />
       </form>
     );

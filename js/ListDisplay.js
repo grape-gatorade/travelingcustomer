@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CommunicationButton from './CommunicationButton';
 import ListItem from './ListItem';
+import DropdownTime from './dropdownTime';
 import styles from '../CSS/Thumbnail.css';
 
 class ListDisplay extends Component {
@@ -33,6 +34,8 @@ class ListDisplay extends Component {
         onRecieve={this.handleRecieveInfo}
         text="Done"
       />);
+    const startTime = (<DropdownTime spec="Start Time" />);
+    const endTime = (<DropdownTime spec="End Time" />);
     // Dead code: <li key={item.id}>{item.name}</li>
     return (
       <div style={styles.list}>
@@ -44,6 +47,8 @@ class ListDisplay extends Component {
             </div>
           ))}
         </ul>
+        {startTime}
+        {endTime}
         {comButton}
       </div>);
   }

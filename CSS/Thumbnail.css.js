@@ -8,7 +8,7 @@ export default {
     padding: '10px',
 
   },
-  list: {
+  listdisplay: {
     borderRadius: '3px',
   },
 
@@ -16,5 +16,8 @@ export default {
     textAlign: 'center',
     backgroundColor: '#36454F',
     color: 'white',
+  },
+  dropdownTime: {
+    textAlign: 'center',
   },
 };
