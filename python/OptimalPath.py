@@ -9,7 +9,7 @@ class OptimalPath(PathStrategy):
     """
 
 
-    def calculate_path(self, path_list=None):
+    def calculate_path(self, path_list, start_time):
         """
             Returns a tuple in a format: (list containing Optimal Path, total time spent traveling.)
             as determined by the Greedy Approximation of Traveling Salesman Algorithm.
@@ -17,7 +17,7 @@ class OptimalPath(PathStrategy):
         if path_list is None:
             path_list = []
         opt_matrix = Matrix()
-        opt_matrix.setup_distance_matrix(path_list)
+        opt_matrix.setup_distance_matrix(path_list, 'driving', start_time)
         if not opt_matrix.is_valid_matrix():
             return -1
 

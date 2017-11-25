@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, jsonify
 from python.OptimalPath import OptimalPath
 from python.RouteContext import RouteContext
 from python.ClosingTimePath import ClosingTimePath
+from datetime import datetime
 
 # Constants
 APP = Flask(__name__)
@@ -18,12 +19,15 @@ def home_page():
 
         location_list = parse_request(content)
         list_of_id = id_parsing(content)
-
+        start_time = parse_start_time(content)
+        
         solution_dictionary = {}
+
+        print(location_list)
 
         optimal_path = OptimalPath()
         context = RouteContext(optimal_path)
-        solution = context.compute_route(location_list)
+        solution = context.compute_route(location_list, start_time)
         if solution == -1:
             solution_dictionary['path_found'] = False
             solution_dictionary['optimal'] = []
@@ -33,7 +37,7 @@ def home_page():
 
         closing_path = ClosingTimePath()
         context2 = RouteContext(closing_path)
-        solution2 = context2.compute_route(list_of_id)
+        solution2 = context2.compute_route(list_of_id, start_time)
         solution_dictionary['closing_time'] = construct_closing_time_response(content, solution2)
         solution_dictionary['closed_stores'] = True if solution2[2] else False
 
@@ -42,6 +46,17 @@ def home_page():
         return jsonify(solution_dictionary)
     if request.method == 'GET':
         return render_template('index.html')
+
+def parse_start_time(json_info):
+    """
+        Determine if json contains start time info, if not use the current time.
+    """
+    start_time = 0
+    try:
+        start_time = json_info['start_time']
+    except KeyError:
+        start_time = datetime.now()
+    return start_time
 
 def parse_request(json_info):
     """

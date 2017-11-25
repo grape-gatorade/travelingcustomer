@@ -50,14 +50,14 @@ class Matrix(object):
         Matrix is designed to handle the distance matrix from Google Maps and stores it as a matrix.
         This matrix is what will be used to determine best path.
     """
-    def __init__(self):
+    def __init__(self, matrix=None):
         """
             Default constructor
         """
-        self._matrix = []
+        self._matrix = matrix if matrix != None else []
         self._cannot_find = set([])
 
-    def setup_distance_matrix(self, path_list, travel_type='driving'):
+    def setup_distance_matrix(self, path_list, travel_type='driving', start_time=datetime.now()):
         """
             Funciton that sets up the distance matrix.
             Parameters:
@@ -84,7 +84,7 @@ class Matrix(object):
                                                 'English',      # language
                                                 None,           # things to avoid
                                                 'imperial',     # units
-                                                datetime.now(), # departure time
+                                                start_time, # departure time
                                                 None,           # arrival time
                                                 None,           # public transit
                                                 None,           # transit preferences
@@ -112,6 +112,8 @@ class Matrix(object):
             if new_matrix[i].count(-1) > 0:
                 self._matrix = []
                 return
+
+        print(new_matrix)
 
         self._matrix = new_matrix
 

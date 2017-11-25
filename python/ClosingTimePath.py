@@ -11,7 +11,7 @@ class ClosingTimePath(PathStrategy):
     """
 
 
-    def calculate_path(self, path_list):
+    def calculate_path(self, path_list, start_time):
         """
             Returns the ordered closing time path in ascending order.
             Takes list of location IDs as a parameter
@@ -26,7 +26,7 @@ class ClosingTimePath(PathStrategy):
         for place in path_list:
             #create new Location object for each place and find their closing times
             loc = Location(place, new_index)
-            loc.set_closing_time()
+            loc.set_closing_time(start_time)
 
             #-1 means we can't find closing time, add to errors, don't cimpute time difference
             if loc.get_closing_time() == -1:
@@ -34,7 +34,7 @@ class ClosingTimePath(PathStrategy):
 
             #the locaton is open 24 hours a day, set maximum time difference for sorting
             elif loc.is_24_hours():
-                loc.set_time_diff()
+                loc.set_time_diff(start_time)
                 always_open.append(loc.get_index())
                 regular.append(loc)
 
@@ -44,7 +44,7 @@ class ClosingTimePath(PathStrategy):
 
             #place is open and has a closing time, compute time difference
             else:
-                loc.set_time_diff()
+                loc.set_time_diff(start_time)
                 regular.append(loc)
 
             new_index += 1

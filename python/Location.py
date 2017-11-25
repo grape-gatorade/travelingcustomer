@@ -34,7 +34,7 @@ class Location(object):
         return self.get_time_diff() <  other.get_time_diff()
 
 
-    def set_closing_time(self):
+    def set_closing_time(self, start_time):
         """
             Makes Google Maps call to determine the closing time for this location.
         """
@@ -44,7 +44,7 @@ class Location(object):
         location_info = gmaps.place(self.__id, 'English')
 
         #current time and current day of the week, closing time can change day by day
-        now = datetime.now()
+        now = start_time
         weekday = now.strftime("%w")
 
         #default opening hours object to be replaced by google maps info
@@ -100,13 +100,13 @@ class Location(object):
             pass
 
 
-    def set_time_diff(self):
+    def set_time_diff(self, start_time):
         """
             Computes time difference in seconds between current time and closing time.
             This value determines the order in which the route will be returned.
         """
         #current time
-        time = datetime.now()
+        time = start_time
 
         #if place isn't open 24 hours and definitively has a closing time
         if (self.__closing_time != 2500) and (self.__closing_time != -1):

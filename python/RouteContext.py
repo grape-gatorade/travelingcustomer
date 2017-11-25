@@ -11,8 +11,8 @@ class RouteContext(object):
         """
         self._strategy = route_strategy
 
-    def compute_route(self, locations):
+    def compute_route(self, locations, start_time):
         """
             Calls calculate_path for PathStrategy object
         """
-        return self._strategy.calculate_path(locations)
+        return self._strategy.calculate_path(locations, start_time)
