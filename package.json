@@ -35,7 +35,7 @@
     "google-map-react": "^0.25.0",
     "html-hint": "^0.2.4",
     "prop-types": "15.6.0",
-    "react": "15.6.0",
+    "react": "^15.6.0",
     "react-bootstrap": "^0.31.5",
     "react-controllables": "^0.6.0",
     "react-dom": "15.6.0",

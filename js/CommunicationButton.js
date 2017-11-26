@@ -1,6 +1,7 @@
 /* eslint-env browser */
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/lib/Button';
+// import { Button } from 'react-bootstrap';
 
 
 class CommunicationButton extends Component {
@@ -44,6 +45,7 @@ class CommunicationButton extends Component {
 
 CommunicationButton.defaultProps = {
   text: 'Send to Server',
+  sendInfo: 'Error',
 };
 
 export default CommunicationButton;

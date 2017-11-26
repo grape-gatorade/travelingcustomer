@@ -1,6 +1,12 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { Form } from 'react-bootstrap';
+import styles from '../CSS/Thumbnail.css';
 
+/*
+Require props: function onUpdate
+Search Bar that finds nearby locations and sends them to parent list
+*/
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +28,13 @@ class SearchBar extends React.Component {
       .then((latLng) => {
         console.log('Success', latLng);
         const x = { name: address, id: placeId, latLng };
-        this.props.loclist.updateList(x);
+
+        // this.props.loclist.updateList(x);
+
+        if (this.props.onUpdate != null) {
+          console.log('We can update the container');
+          this.props.onUpdate(x);
+        }
       })
       .catch(error => console.error('Error', error));
     // console.log('latlng', latlng);
@@ -44,13 +56,14 @@ class SearchBar extends React.Component {
     };
 
     return (
-      <form>
+      <Form>
         <PlacesAutocomplete
           inputProps={inputProps}
           options={options}
           onSelect={this.handleSelect}
+          styles={styles.searchBar}
         />
-      </form>
+      </Form>
     );
   }
 }

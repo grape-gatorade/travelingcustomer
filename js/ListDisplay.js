@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import CommunicationButton from './CommunicationButton';
+import ListItem from './ListItem';
+// import DropdownTime from './dropdownTime';
+import styles from '../CSS/Thumbnail.css';
 
 class ListDisplay extends Component {
   constructor(props) {
@@ -23,8 +26,13 @@ class ListDisplay extends Component {
     this.props.map.changeLocationList(info.optimal.path.slice(1, info.optimal.path.length - 1));
   }
   render() {
-    const list = this.state.items;
+    console.log('render list display props: ', this.props);
+    const list = this.props.items;
+    /*
     const currentLocation = this.props.map.state.center;
+    const startTime = (<DropdownTime spec="Start Time" />);
+    const endTime = (<DropdownTime spec="End Time" />);
+    console.log('render ', x);
     const info = { places: list, start_loc: currentLocation };
     const comButton =
       (<CommunicationButton
@@ -32,14 +40,17 @@ class ListDisplay extends Component {
         onRecieve={this.handleRecieveInfo}
         text="Done"
       />);
-
+      */
+    // Dead code: <li key={item.id}>{item.name}</li>
     return (
-      <div>
-        <h1>Locations:</h1>
+      <div style={styles.list}>
         <ul>
-          { list.map(item => <li key={item.id}>{item.name}</li>)}
+          { list.map(item => (
+            <div key={item.id}>
+              <ListItem key={item.id} name={item.name} />
+            </div>
+          ))}
         </ul>
-        {comButton}
       </div>);
   }
 }
