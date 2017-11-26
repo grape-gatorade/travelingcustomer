@@ -3,6 +3,7 @@ import SearchBar from './SearchBar';
 import ListDisplay from './ListDisplay';
 import DropdownTime from './dropdownTime';
 import CommunicationButton from './CommunicationButton';
+import DisplayRoutes from './DisplayRoutes';
 
 /*
 Required prop: map object
@@ -74,6 +75,7 @@ class UserInputContainer extends Component {
         <DropdownTime onUpdate={this.updateTime} id="end" spec="End Time" />
         <ListDisplay items={list} />
         {comButton}
+        <DisplayRoutes foundpaths={this.state.recieved.paths_found} />
       </div>
     );
   }

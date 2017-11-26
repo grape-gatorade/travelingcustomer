@@ -20,6 +20,7 @@ def home_page():
     if request.method == 'POST':
         print("got post")
         content = request.get_json()
+        print(content)
 
         location_list = parse_request(content)
         list_of_id = id_parsing(content)
