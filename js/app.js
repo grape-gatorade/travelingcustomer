@@ -7,6 +7,7 @@ import Map from './Map';
 import SearchBar from './SearchBar';
 import ListDisplay from './ListDisplay';
 import DropdownTime from './dropdownTime';
+import UserInputContainer from './UserInputContainer';
 
 
 const API_KEY = 'AIzaSyBuGbc491h07Hp-ao-6o-dkLmUUX9OG_ho';
@@ -24,9 +25,10 @@ if (typeof window !== 'undefined') {
       assignCurrentLocation(position, map);
     });
   }
+  ReactDOM.render(<UserInputContainer map_show={map} />, window.document.getElementById('userInput'));
   ReactDOM.render(<Hello />, window.document.getElementById('helloWorld'));
-  ReactDOM.render(<DropdownTime />, window.document.getElementById('dropdownTime'));
-  const locationsList = ReactDOM.render(<ListDisplay map={map} />, window.document.getElementById('locations_list'));
-  ReactDOM.render(<SearchBar map={map} loclist={locationsList} />, window.document.getElementById('searchBar'));
-  ReactDOM.render(<GoogleMapsShareButton text="Send Path To Google Maps" list={locationsList} />, window.document.getElementById('sendToServerButton'));
+  // ReactDOM.render(<DropdownTime spec="Start Time" />, window.document.getElementById('dropdownTime'));
+  // const locationsList = ReactDOM.render(<ListDisplay map={map} />, window.document.getElementById('locations_list'));
+  // ReactDOM.render(<SearchBar map={map} loclist={locationsList} />, window.document.getElementById('searchBar'));
+  // ReactDOM.render(<GoogleMapsShareButton text="Send Path To Google Maps" list={locationsList} />, window.document.getElementById('sendToServerButton'));
 }

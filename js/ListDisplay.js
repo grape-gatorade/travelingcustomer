@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CommunicationButton from './CommunicationButton';
 import ListItem from './ListItem';
-import DropdownTime from './dropdownTime';
+// import DropdownTime from './dropdownTime';
 import styles from '../CSS/Thumbnail.css';
 
 class ListDisplay extends Component {
@@ -25,8 +25,13 @@ class ListDisplay extends Component {
     this.setState({ items: info.path });
   }
   render() {
-    const list = this.state.items;
+    console.log('render list display props: ', this.props);
+    const list = this.props.items;
+    /*
     const currentLocation = this.props.map.state.center;
+    const startTime = (<DropdownTime spec="Start Time" />);
+    const endTime = (<DropdownTime spec="End Time" />);
+    console.log('render ', x);
     const info = { places: list, start_loc: currentLocation };
     const comButton =
       (<CommunicationButton
@@ -34,12 +39,10 @@ class ListDisplay extends Component {
         onRecieve={this.handleRecieveInfo}
         text="Done"
       />);
-    const startTime = (<DropdownTime spec="Start Time" />);
-    const endTime = (<DropdownTime spec="End Time" />);
+      */
     // Dead code: <li key={item.id}>{item.name}</li>
     return (
       <div style={styles.list}>
-        <h1>Locations:</h1>
         <ul>
           { list.map(item => (
             <div key={item.id}>
@@ -47,9 +50,6 @@ class ListDisplay extends Component {
             </div>
           ))}
         </ul>
-        {startTime}
-        {endTime}
-        {comButton}
       </div>);
   }
 }

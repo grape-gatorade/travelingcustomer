@@ -25,8 +25,8 @@ class DropdownTime extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hour: null,
-      minute: null,
+      hour: 0,
+      minute: 0,
     }
     this.handleSelectHour = this.handleSelectHour.bind(this);
     this.handleSelectMinute = this.handleSelectMinute.bind(this);
@@ -48,32 +48,34 @@ class DropdownTime extends Component {
     const horas = this.constructor.populateList(12);
     const minutos = this.constructor.populateList(60);
     return (
-      <Form inline>
-        <FormGroup controlId="formControlsSelect">
-          <ControlLabel>Select {this.props.spec} :</ControlLabel>
-          <FormControl
-            componentClass="select"
-            onChange={this.handleSelectHour}
-            placeholder="select"
-          >
-            <option> Select Hour </option>
-            {horas.map(num => (<option key={num}> { num } </option>))}
-          </FormControl>
-          :
-          <FormControl
-            componentClass="select"
-            placeholder="select"
-            onChange={this.handleSelectMinute}
-          >
-            <option> Select Minutes </option>
-            {minutos.map(num => (<option key={num}> { num } </option>))}
-          </FormControl>
-          <FormControl componentClass="select" placeholder="select">
-            <option>AM</option>
-            <option>PM</option>
-          </FormControl>
-        </FormGroup>
-      </Form>
+      <div>
+        <Form inline>
+          <FormGroup controlId="formControlsSelect">
+            <ControlLabel>Select {this.props.spec} :</ControlLabel>
+            <FormControl
+              componentClass="select"
+              onChange={this.handleSelectHour}
+              placeholder="select"
+            >
+              <option> Select Hour </option>
+              {horas.map(num => (<option key={num}> { num } </option>))}
+            </FormControl>
+            :
+            <FormControl
+              componentClass="select"
+              placeholder="select"
+              onChange={this.handleSelectMinute}
+            >
+              <option> Select Minutes </option>
+              {minutos.map(num => (<option key={num}> { num } </option>))}
+            </FormControl>
+            <FormControl componentClass="select" placeholder="select">
+              <option>AM</option>
+              <option>PM</option>
+            </FormControl>
+          </FormGroup>
+        </Form>
+      </div>
     );
     // return <h2>Welcome To Traveling Customer</h2>;
   }

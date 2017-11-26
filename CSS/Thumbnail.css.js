@@ -3,7 +3,7 @@ export default {
     borderRadius: '3px',
     borderColor: 'black',
     // '#A8CBD4'
-    backgroundColor: '#C1E6EF',
+    backgroundColor: '#36454F',
     color: 'white',
     padding: '10px',
 
@@ -18,6 +18,11 @@ export default {
     color: 'white',
   },
   dropdownTime: {
-    textAlign: 'center',
+    // textAlign: 'center',
+  },
+  searchBar: {
+    input: { width: '100%' },
+    autocompleteItem: { color: 'black' },
+    autocompleteItemActive: { color: 'blue' },
   },
 };

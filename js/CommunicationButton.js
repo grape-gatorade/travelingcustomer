@@ -45,6 +45,7 @@ class CommunicationButton extends Component {
 
 CommunicationButton.defaultProps = {
   text: 'Send to Server',
+  sendInfo: 'Error',
 };
 
 export default CommunicationButton;

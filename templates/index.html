@@ -7,8 +7,9 @@
   .right  {
     background-color: powderblue;
     float: right;
-    padding-right: 50px;
-    position: relative;
+    /*padding-right: 50px;*/
+    display: block;
+    /*position: relative;*/
     width: 50%;
   }
 
@@ -21,15 +22,21 @@
 
 <body>
   <div id="main" class="main">
+
     <div class="right">
+      <div id="userInput"> User Container should be here </div>
       <div id="searchBar" class="searchBar"></div>
+
+      <!-- <div id="dropdownTime">time dropdown to be displayed</div> -->
       <div id="locations_list"></div>
-      <div id="dropdownTime">time dropdown to be displayed</div>
+
     </div>
     <div id="reactMap"></div>
 
     <div id="sendToServerButton"> Server Button Should BE HERE</div>
 </div>
+
+
   <!-- Attach React components -->
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDA3tCPe5-nZ7i8swYDskytH2cmQq6lBiA&libraries=places"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='bundle.js') }}"></script>
