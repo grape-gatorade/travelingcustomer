@@ -113,8 +113,6 @@ class Matrix(object):
                 self._matrix = []
                 return
 
-        print(new_matrix)
-
         self._matrix = new_matrix
 
 

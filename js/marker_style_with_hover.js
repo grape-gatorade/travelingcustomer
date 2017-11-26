@@ -1,4 +1,4 @@
-const K_SIZE = 15;
+const K_SIZE = 18;
 
 const markerStyle = {
   // initially any map object has left top corner at lat lng coordinates
