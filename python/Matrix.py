@@ -77,6 +77,8 @@ class Matrix(object):
         new_matrix = []
 
         num_rows = len(path_list)
+
+        last_call = datetime.now()
         for i in range(0, num_rows):
             dist_matrix = gmaps.distance_matrix(path_list[i],   # origin
                                                 path_list,      # destination
@@ -106,7 +108,10 @@ class Matrix(object):
             # There is a limit on the number of elements requested per second to google maps.
             # We sleep for a second if we will be making large requests to the API.
             if len(path_list) >= 10:
-                time.sleep(1.1)
+                print((float(len(path_list)) / float(100.0)) + float(0.05) - (datetime.now() - last_call).total_seconds())
+                if ((datetime.now() - last_call).total_seconds() < ((float(len(path_list)) / float(100.0)) + float(0.01))):
+                    time.sleep((float(len(path_list)) / float(100.0)) + float(0.05) - (datetime.now() - last_call).total_seconds())
+                last_call = datetime.now()
 
         for i in range(0, len(new_matrix)):
             if new_matrix[i].count(-1) > 0:

@@ -16,8 +16,6 @@ def test_gmaps():
     travel_info = matrix["rows"][0]["elements"][1]
     assert travel_info["status"] == "OK"
 
-
-
 def test_tsp():
     """
         Testing that the TSP Solution doesn't choose incorrectly
