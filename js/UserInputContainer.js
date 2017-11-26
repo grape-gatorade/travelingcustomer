@@ -56,7 +56,7 @@ class UserInputContainer extends Component {
     const list = this.state.location_list;
     const starttime = this.state.start_time;
     const endtime = this.state.end_time;
-    const pathsfound = this.state.recieved.paths_found;
+    const pathsfound = this.state.recieved.path_found;
     const info = {
       places: list,
       start_loc: currentLocation,
@@ -76,7 +76,7 @@ class UserInputContainer extends Component {
         <DropdownTime onUpdate={this.updateTime} id="end" spec="End Time" />
         <ListDisplay items={list} />
         {comButton}
-        <DisplayRoutes foundpaths={pathsfound} />
+        <DisplayRoutes foundpaths={pathsfound} paths={this.state.recieved.paths} />
       </div>
     );
   }

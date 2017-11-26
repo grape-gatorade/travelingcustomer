@@ -109,10 +109,12 @@ def parse_start_time(json_info):
     """
         Determine if json contains start time info, if not use the current time.
     """
+
     start_time = 0
     try:
-        start_time = json_info['start_time']
+        start_time = json_info['info']['start_time']
         if (start_time is None):
+            print('START TIME WAS NONNNNEENNNENENEN')
             start_time = datetime.now()
         else:
             depart_hour = start_time['hour']
@@ -121,7 +123,7 @@ def parse_start_time(json_info):
 
             if (depart_meridiem == 'PM'):
                 depart_hour += 12
-            
+
             today = datetime.today()
 
             start_time = datetime(today.year, today.month, today.day, depart_hour, depart_minute)
