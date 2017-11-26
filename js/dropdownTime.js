@@ -30,6 +30,7 @@ class DropdownTime extends Component {
     };
     this.handleSelectHour = this.handleSelectHour.bind(this);
     this.handleSelectMinute = this.handleSelectMinute.bind(this);
+    this.handleSelectMeridiem = this.handleSelectMeridiem.bind(this);
   }
   /* Updates the state hour variable */
   handleSelectHour(event) {

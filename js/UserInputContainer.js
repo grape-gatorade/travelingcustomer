@@ -40,8 +40,8 @@ class UserInputContainer extends Component {
     }
   }
   handleRecieveInfo(info) {
-    console.log('handleRecieveInfo', info.path);
-    this.setState({ recieved: info.path });
+    console.log('handleRecieveInfo', info);
+    this.setState({ recieved: info });
   }
   render() {
     console.log('render userinput: ', this.props);
