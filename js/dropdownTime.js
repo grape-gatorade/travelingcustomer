@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, ControlLabel, Form } from 'react-bootstrap';
-// import styles from '../CSS/Thumbnail.css';
 
 /*
 Generate a list of numbers
-param = Integer
+Required props = id, spec, onUpdate functions
+Three drop down lists that allow the user to select a time
 */
 class DropdownTime extends Component {
   static populateList(Num) {
@@ -30,8 +30,10 @@ class DropdownTime extends Component {
     };
     this.handleSelectHour = this.handleSelectHour.bind(this);
     this.handleSelectMinute = this.handleSelectMinute.bind(this);
+    this.handleSelectMeridiem = this.handleSelectMeridiem.bind(this);
   }
-  /* Updates the state hour variable */
+  /* Updates the state hour variable
+  Updates the parent  */
   handleSelectHour(event) {
     const time = this.state;
     // console.log('handleSelectHour', time.hour);
@@ -39,24 +41,23 @@ class DropdownTime extends Component {
     this.setState({ hour: parseInt(event.target.value, 10) });
     this.props.onUpdate(this.props.id, time);
   }
+  /* Updates the state minute
+  Updates the parent  */
   handleSelectMinute(event) {
-    // console.log('handleSelectMinute', parseInt(event.target.value, 10));
     const time = this.state;
     time.minute = parseInt(event.target.value, 10);
     this.setState({ minute: parseInt(event.target.value, 10) });
     this.props.onUpdate(this.props.id, time);
   }
+  /* Updates the state meridium
+  Updates the parent */
   handleSelectMeridiem(event) {
     this.setState({ meridiem: event.target.value });
     const time = this.state;
     time.meridiem = event.target.value;
     this.props.onUpdate(this.props.id, time);
   }
-  // { { horas }.map(item => (
-  //   <option>{item}</option>
-  // ))}
   render() {
-    // this.populateList(16);
     const horas = this.constructor.populateList(12);
     const minutos = this.constructor.populateList(60);
     return (

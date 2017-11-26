@@ -15,31 +15,24 @@ class SearchBar extends React.Component {
     this.handleSelect = this.handleSelect.bind(this);
   }
 
+  // updates the address state variable
   onChange(address) {
     this.setState({ address });
   }
 
   handleSelect(address, placeId) {
-    // const item = { name: address, id: placeId };
     console.log('handle select called');
-    // this.props.loclist.updateList(item);
-
     geocodeByAddress(address).then(results => getLatLng(results[0]))
       .then((latLng) => {
         console.log('Success', latLng);
         const x = { name: address, id: placeId, latLng };
-
-        // this.props.loclist.updateList(x);
-
         if (this.props.onUpdate != null) {
           console.log('We can update the container');
           this.props.onUpdate(x);
         }
       })
       .catch(error => console.error('Error', error));
-    // console.log('latlng', latlng);
-    // this.setState({ address, placeId });
-
+    // clearing the address field
     this.setState({ address: '' });
   }
 

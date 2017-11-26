@@ -31,8 +31,4 @@ if (typeof window !== 'undefined') {
   }
   ReactDOM.render(<UserInputContainer map_show={map} />, window.document.getElementById('userInput'));
   ReactDOM.render(<Hello />, window.document.getElementById('helloWorld'));
-  // ReactDOM.render(<DropdownTime spec="Start Time" />, window.document.getElementById('dropdownTime'));
-  // const locationsList = ReactDOM.render(<ListDisplay map={map} />, window.document.getElementById('locations_list'));
-  // ReactDOM.render(<SearchBar map={map} loclist={locationsList} />, window.document.getElementById('searchBar'));
-  // ReactDOM.render(<GoogleMapsShareButton text="Send Path To Google Maps" list={locationsList} />, window.document.getElementById('sendToServerButton'));
 }

@@ -10,6 +10,5 @@ class ListItem extends Component {
 }
 ListItem.defaultProps = {
   name: '',
-
 };
 export default ListItem;

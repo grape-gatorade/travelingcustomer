@@ -4,6 +4,10 @@ import ListDisplay from './ListDisplay';
 import DropdownTime from './dropdownTime';
 import CommunicationButton from './CommunicationButton';
 
+/*
+Required prop: map object
+Contains all of the components and acts as a platform for them to communicate
+*/
 class UserInputContainer extends Component {
   constructor(props) {
     super(props);
@@ -31,17 +35,19 @@ class UserInputContainer extends Component {
     this.props.map_show.updateLocationList(newItem);
     // this.props.map.updateLocationList(newItem);
   }
+
+  /* called when one of the time components is changed and updates the state */
   updateTime(id, time) {
-    // console.log('UserInputContainer updatetime ', id, time)
     if (id === 'start') {
       this.setState({ start_time: time });
     } else {
       this.setState({ end_time: time });
     }
   }
+  /* recieves information from server and updates component state */
   handleRecieveInfo(info) {
-    console.log('handleRecieveInfo', info.path);
-    this.setState({ recieved: info.path });
+    console.log('handleRecieveInfo', info);
+    this.setState({ recieved: info });
   }
   render() {
     console.log('render userinput: ', this.props);
