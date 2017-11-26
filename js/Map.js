@@ -23,7 +23,7 @@ class Map extends Component {
   }
 
   updateLocationList(newLocation) {
-    console.log('updateLocation ');
+    console.log('updateLocation ', newLocation);
     // this.setState({ locationsList: this.state.items.concat([newLocation]) });
     this.setState({ locationList: this.state.locationList.concat([newLocation]) });
   }
@@ -48,6 +48,7 @@ class Map extends Component {
           {
             markers.map(marker => (
               <Marker
+                key={marker.id}
                 lat={marker.latLng.lat}
                 lng={marker.latLng.lng}
                 text={marker.name}
