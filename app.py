@@ -26,8 +26,34 @@ def home_page():
         list_of_id = id_parsing(content)
         start_time = parse_start_time(content)
 
-        solution_dictionary = {'paths':[]}
+        """
+            Here we begin computing routes to send in the JSON response
 
+            Format of JSON Response:
+                {
+                    closed_stores: bool,
+                    path_found: bool,
+                    paths: [
+                        { path: [
+                            ...
+                          ], travel_time: int
+                        },
+                        { path: [
+                            ...
+                        ], travel_time: int
+                        },
+                        { path: [
+                            ...
+                          ], travel_time: int
+                        },
+                        { path: [
+                            ...
+                        ], travel_time: int
+                        }
+                    ]
+                }
+        """
+        solution_dictionary = {'paths':[]}
 
         # Optimal Path
         optimal_path = OptimalPath()
@@ -86,6 +112,21 @@ def parse_start_time(json_info):
     start_time = 0
     try:
         start_time = json_info['start_time']
+        if (start_time is None):
+            start_time = datetime.now()
+        else:
+            depart_hour = start_time['hour']
+            depart_minute = start_time['minute']
+            depart_meridiem = start_time['meridiem']
+
+            if (depart_meridiem == 'PM'):
+                depart_hour += 12
+            
+            today = datetime.today()
+
+            start_time = datetime(today.year, today.month, today.day, depart_hour, depart_minute)
+            if (start_time < datetime.now()):
+                start_time = datetime.now()
     except KeyError:
         start_time = datetime.now()
     return start_time
@@ -149,7 +190,7 @@ def construct_closing_time_response(json_info, solution):
 
 def compute_travel_time(path, travel_type='driving', start_time=datetime.now()):
     """
-        Given a JSON containing path information,
+        Given a list containing the path information,
         return the time to travel to each location from start to finish
     """
     gmaps = googlemaps.Client(key='AIzaSyBuGbc491h07Hp-ao-6o-dkLmUUX9OG_ho')
