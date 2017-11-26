@@ -1,10 +1,12 @@
 """ Server for Traveling Customer Web App """
 from __future__ import print_function
+from datetime import datetime
 from flask import Flask, render_template, request, jsonify
 from python.OptimalPath import OptimalPath
 from python.RouteContext import RouteContext
 from python.ClosingTimePath import ClosingTimePath
-from datetime import datetime
+from python.DistancePath import DistancePath
+from python.DefaultPath import DefaultPath
 
 # Constants
 APP = Flask(__name__)
@@ -20,7 +22,7 @@ def home_page():
         location_list = parse_request(content)
         list_of_id = id_parsing(content)
         start_time = parse_start_time(content)
-        
+
         solution_dictionary = {}
 
         print(location_list)
@@ -40,6 +42,22 @@ def home_page():
         solution2 = context2.compute_route(list_of_id, start_time)
         solution_dictionary['closing_time'] = construct_closing_time_response(content, solution2)
         solution_dictionary['closed_stores'] = True if solution2[2] else False
+
+        distance_path = DistancePath()
+        context3 = RouteContext(distance_path)
+        solution3 = context3.compute_route(location_list, start_time)
+        if solution == -1:
+            solution_dictionary['distance'] = []
+        else:
+            solution_dictionary['distance'] = construct_optimal_response(content, solution3[0], solution3[1])
+
+        default_path = DefaultPath()
+        context4 = RouteContext(default_path)
+        solution4 = context4.compute_route(location_list, start_time)
+        if solution == -1:
+            solution_dictionary['default'] = []
+        else:
+            solution_dictionary['default'] = construct_optimal_response(content, solution4, -1)
 
         print(solution_dictionary)
 
@@ -74,7 +92,7 @@ def id_parsing(json_info):
     """
         Returns a list containing the unique location id for each location
     """
-    id_list=[]
+    id_list = []
     for place_dictionary in json_info['info']['places']:
         id_list.append(place_dictionary['id'])
 

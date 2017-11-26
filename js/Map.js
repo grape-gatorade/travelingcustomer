@@ -22,6 +22,7 @@ class Map extends Component {
     this.setState({ center: newCenter });
   }
 
+
   updateLocationList(newLocation) {
     console.log('updateLocation ');
     // this.setState({ locationsList: this.state.items.concat([newLocation]) });

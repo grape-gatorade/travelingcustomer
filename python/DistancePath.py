@@ -1,8 +1,8 @@
-""" Contains the OptimalPath class, implementing the PathStrategy """
+""" Contains the DistancePath class, implementing the PathStrategy """
 from python.PathStrategyInterface import PathStrategy
 from python.Matrix import Matrix
 
-class OptimalPath(PathStrategy):
+class DistancePath(PathStrategy):
     """
         OptimalPath implements the PathStrategy Interface.
         calculate_path will be the path best fitting our algorithm.
@@ -17,7 +17,7 @@ class OptimalPath(PathStrategy):
         if path_list is None:
             path_list = []
         opt_matrix = Matrix()
-        opt_matrix.setup_distance_matrix(path_list, 'driving', start_time, 'duration')
+        opt_matrix.setup_distance_matrix(path_list, 'driving', start_time, 'distance')
         if not opt_matrix.is_valid_matrix():
             return -1
 

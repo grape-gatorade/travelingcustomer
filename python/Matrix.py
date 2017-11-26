@@ -57,7 +57,7 @@ class Matrix(object):
         self._matrix = matrix if matrix != None else []
         self._cannot_find = set([])
 
-    def setup_distance_matrix(self, path_list, travel_type='driving', start_time=datetime.now()):
+    def setup_distance_matrix(self, path_list, travel_type='driving', start_time=datetime.now(), edge_type='duration'):
         """
             Funciton that sets up the distance matrix.
             Parameters:
@@ -93,7 +93,7 @@ class Matrix(object):
             location_row = dist_matrix['rows'][0]
             for j in range(0, num_rows):
                 try:
-                    duration_to_location = location_row['elements'][j]['duration']['value']
+                    duration_to_location = location_row['elements'][j][edge_type]['value']
 
                     #new row adds weight
                     new_distance_list.append(duration_to_location if i != j else 0)

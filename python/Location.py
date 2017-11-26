@@ -3,7 +3,7 @@
     used to keep track of all location information.
 """
 from __future__ import print_function
-from datetime import datetime, timedelta
+from datetime import timedelta
 import googlemaps
 
 class Location(object):
@@ -31,7 +31,7 @@ class Location(object):
             Comparator for closing times
             We base sorting on how far off closing time is from current time
         """
-        return self.get_time_diff() <  other.get_time_diff()
+        return self.get_time_diff() < other.get_time_diff()
 
 
     def set_closing_time(self, start_time):
