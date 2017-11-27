@@ -44,16 +44,17 @@ class DisplayRoutes extends React.Component {
 function ShowRoutes(props) {
   function onChange(value) {
     console.log('Display OnChange called', value)
+    console.log(props.paths[value])
   }
   return (
     <div>
       <div>Routes Found</div>
       <ButtonToolbar>
-        <ToggleButtonGroup type="radio" name="options" onChange={onChange} defaultValue={1}>
-          <ToggleButton value={1} >Optimal Path</ToggleButton>
-          <ToggleButton value={2} >Closing Time Path</ToggleButton>
-          <ToggleButton value={3} >Distance Path</ToggleButton>
-          <ToggleButton value={4} >Default Path</ToggleButton>
+        <ToggleButtonGroup type="radio" name="options" onChange={onChange} defaultValue={0}>
+          <ToggleButton value={0} >Optimal Path</ToggleButton>
+          <ToggleButton value={1} >Closing Time Path</ToggleButton>
+          <ToggleButton value={2} >Distance Path</ToggleButton>
+          <ToggleButton value={3} >Default Path</ToggleButton>
         </ToggleButtonGroup>
       </ButtonToolbar>
     </div>
