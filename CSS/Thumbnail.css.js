@@ -3,7 +3,7 @@ export default {
     borderRadius: '3px',
     borderColor: 'black',
     // '#A8CBD4'
-    backgroundColor: '#36454F',
+    backgroundColor: '#69879b',
     color: 'white',
     padding: '10px',
 
