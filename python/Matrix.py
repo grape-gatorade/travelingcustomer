@@ -5,7 +5,7 @@
 from __future__ import print_function
 from sys import maxsize
 from itertools import chain, combinations
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 import googlemaps
 
@@ -57,7 +57,7 @@ class Matrix(object):
         self._matrix = matrix if matrix != None else []
         self._cannot_find = set([])
 
-    def setup_distance_matrix(self, path_list, travel_type='driving', start_time=datetime.now(), edge_type='duration'):
+    def setup_distance_matrix(self, path_list, travel_type='driving', start_time=None, edge_type='duration'):
         """
             Funciton that sets up the distance matrix.
             Parameters:
@@ -65,6 +65,9 @@ class Matrix(object):
             travel_type:string indicating travel type
             valid values for travel type are 'driving, 'walking', or 'transit'
         """
+        if start_time is None:
+            print("enters here")
+            start_time = datetime.now() + timedelta(minute=5)
 
         print(start_time)
         path_len = len(path_list)
