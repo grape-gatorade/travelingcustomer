@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import ListDisplay from './ListDisplay'
+import ListDisplay from './ListDisplay';
 
 /*
 Required props: routes = list of routes objects
@@ -22,13 +22,13 @@ class ShowRoutesSelector extends Component {
   }
   render() {
     const s = this.state.selected;
-    console.log("ShowRoutesSelector is rendering", this.props.routes[s].path);
+    console.log('ShowRoutesSelector is rendering', this.props.routes[s].path);
 
     const selectedRoute = this.props.routes[s].path;
     const list = <ListDisplay items={selectedRoute} />;
     return (
       <div>
-        <div> Shouw route </div>
+        <div> Possible Routes </div>
         {list}
         <ButtonToolbar>
           <ToggleButtonGroup type="radio" name="options" onChange={this.onChange} defaultValue={0}>
