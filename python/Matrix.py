@@ -128,6 +128,14 @@ class Matrix(object):
             From vertex 0 to the set of vertices passed over to reach vertex I.
         """
 
+        # Begin with bounds checking
+
+        if not self._matrix:
+            return ([], 0)
+
+        if len(self._matrix) == 1:
+            return ([0, 0], 0)
+
         min_cost_map = {}
         parent_map = {}
 

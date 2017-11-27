@@ -1,6 +1,6 @@
 """ Server for Traveling Customer Web App """
 from __future__ import print_function
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import Flask, render_template, request, jsonify
 from python.OptimalPath import OptimalPath
 from python.RouteContext import RouteContext
@@ -113,24 +113,29 @@ def parse_start_time(json_info):
     start_time = 0
     try:
         start_time = json_info['info']['start_time']
-        if (start_time is None):
-            print('START TIME WAS NONNNNEENNNENENEN')
+        if start_time is None:
             start_time = datetime.now()
         else:
             depart_hour = start_time['hour']
             depart_minute = start_time['minute']
             depart_meridiem = start_time['meridiem']
 
-            if (depart_meridiem == 'PM'):
+            if depart_meridiem == 'PM':
                 depart_hour += 12
 
             today = datetime.today()
 
             start_time = datetime(today.year, today.month, today.day, depart_hour, depart_minute)
-            if (start_time < datetime.now()):
+            if start_time < datetime.now():
                 start_time = datetime.now()
     except KeyError:
         start_time = datetime.now()
+
+    extra_time = timedelta(minutes=5)
+
+    start_time = start_time + extra_time
+
+    print(start_time)
     return start_time
 
 def parse_request(json_info):
