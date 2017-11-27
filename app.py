@@ -115,9 +115,9 @@ def parse_start_time(json_info):
         start_time = json_info['info']['start_time']
         if start_time is None:
             print("start time NONNONONONONONEEE")
-            start_time = datetime.now()
+            start_time = datetime.utcnow()
         else:
-            depart_hour = start_time['hour']
+            depart_hour = start_time['hour'] + 5
             depart_minute = start_time['minute']
             depart_meridiem = start_time['meridiem']
 
@@ -127,8 +127,8 @@ def parse_start_time(json_info):
             today = datetime.today()
 
             start_time = datetime(today.year, today.month, today.day, depart_hour, depart_minute)
-            if start_time < datetime.now():
-                start_time = datetime.now()
+            if start_time < datetime.utcnow():
+                start_time = datetime.utcnow()
     except KeyError:
         start_time = datetime.now()
 

@@ -67,7 +67,7 @@ class Matrix(object):
         """
         if start_time is None:
             print("enters here")
-            start_time = datetime.now() + timedelta(minute=5)
+            start_time = datetime.utcnow() + timedelta(minute=5)
 
         print(start_time)
         path_len = len(path_list)
@@ -86,6 +86,7 @@ class Matrix(object):
         last_call = datetime.now()
         for i in range(0, num_rows):
             print(path_list[i])
+            print(datetime.now())
             print(start_time)
             dist_matrix = gmaps.distance_matrix(path_list[i],   # origin
                                                 path_list,      # destination
