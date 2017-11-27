@@ -1,6 +1,8 @@
 import React from 'react';
+import { ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import ListDisplay from './ListDisplay';
-import { ButtonToolbar, ToggleButtonGroup, ToggleButton, Form } from 'react-bootstrap';
+// import Hello from './Hello';
+import ShowRoutesSelector from './ShowRoutes';
 /*
 Required props: foundpaths
 */
@@ -25,15 +27,18 @@ class DisplayRoutes extends React.Component {
     const foundPaths = this.props.foundpaths;
     const routes = this.props.paths;
 
-    let button = null;
-    if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
+    let fp = null;
+    if (foundPaths) {
+      // fp = <div> found path true</div>;
+      fp = <ShowRoutesSelector routes={routes} />;
     } else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
+      fp = <div> No paths yet</div>;
+      // fp = <ShowRoutesSelector routes="put routes here" />;
+      // <Greeting found={foundPaths} paths={routes} />
     }
     return (
       <div>
-        <Greeting found={foundPaths} paths={routes} />
+        {fp}
       </div>
     );
   }

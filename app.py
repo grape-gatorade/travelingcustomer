@@ -25,6 +25,7 @@ def home_page():
         location_list = parse_request(content)
         list_of_id = id_parsing(content)
         start_time = parse_start_time(content)
+        print("!!!!!start_time ", start_time)
 
         """
             Here we begin computing routes to send in the JSON response

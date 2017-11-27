@@ -3,7 +3,8 @@ import ListItem from './ListItem';
 import styles from '../CSS/Thumbnail.css';
 
 /*
-Requires: list of items
+Requiresd props: items =  list of items
+
 Displays list of items as ListItem objects
 */
 class ListDisplay extends Component {
