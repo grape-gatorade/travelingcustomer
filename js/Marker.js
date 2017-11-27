@@ -4,6 +4,9 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import { markerStyle, markerStyleHover } from './marker_style_with_hover';
 
+
+// Component responsible for displaying a marker with the
+// correct styling in the correct location
 class Marker extends Component {
   static propTypes = {
     // use hover from controllable

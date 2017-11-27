@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import Marker from './Marker';
 
+
+// Google Maps React Component which displays locations as markers on the map as they are received.
 class Map extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,6 @@ class Map extends Component {
 
   updateLocationList(newLocation) {
     console.log('updateLocation ', newLocation);
-    // this.setState({ locationsList: this.state.items.concat([newLocation]) });
     this.setState({ locationList: this.state.locationList.concat([newLocation]) });
   }
 

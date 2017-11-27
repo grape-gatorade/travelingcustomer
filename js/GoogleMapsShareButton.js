@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 
+
+// This class is responsible for turning a list of locations into a Google Maps directions query
+// When clicked, the directions will open in a new tab.
 class GoogleMapsShareButton extends Component {
   static defaultProps = {
     text: 'Open Google Maps',

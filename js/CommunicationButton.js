@@ -2,6 +2,10 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/lib/Button';
 
+
+// This class is responsible for sending the data entered by the user to the
+// flask server via a POST request, and receiving the response of that
+// request from the server.
 class CommunicationButton extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +14,8 @@ class CommunicationButton extends Component {
     };
     this.sendFetchRequest = this.sendFetchRequest.bind(this);
   }
+
+  // Response of the POST Request calls this.props.onReceive
   sendFetchRequest(data) {
     fetch('http://127.0.0.1:5000/', {
       method: 'POST',
@@ -25,7 +31,6 @@ class CommunicationButton extends Component {
       });
     });
   }
-
 
   render() {
     return (

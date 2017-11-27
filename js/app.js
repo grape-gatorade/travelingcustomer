@@ -2,12 +2,8 @@
 import 'html-hint/dist/html-hint.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GoogleMapsShareButton from './GoogleMapsShareButton';
 import Hello from './Hello';
 import Map from './Map';
-import SearchBar from './SearchBar';
-import ListDisplay from './ListDisplay';
-import DropdownTime from './dropdownTime';
 import UserInputContainer from './UserInputContainer';
 
 const API_KEY = 'AIzaSyBuGbc491h07Hp-ao-6o-dkLmUUX9OG_ho';
