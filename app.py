@@ -1,6 +1,6 @@
 """ Server for Traveling Customer Web App """
 from __future__ import print_function
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask import Flask, render_template, request, jsonify
 from python.OptimalPath import OptimalPath
 from python.RouteContext import RouteContext
@@ -20,6 +20,7 @@ def home_page():
     if request.method == 'POST':
         print("got post")
         content = request.get_json()
+        print(content)
 
         location_list = parse_request(content)
         list_of_id = id_parsing(content)
@@ -108,6 +109,7 @@ def parse_start_time(json_info):
     """
         Determine if json contains start time info, if not use the current time.
     """
+
     start_time = 0
     try:
         start_time = json_info['info']['start_time']
@@ -128,6 +130,12 @@ def parse_start_time(json_info):
                 start_time = datetime.now()
     except KeyError:
         start_time = datetime.now()
+
+    extra_time = timedelta(minutes=5)
+
+    start_time = start_time + extra_time
+
+    print(start_time)
     return start_time
 
 def parse_request(json_info):
