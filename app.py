@@ -76,7 +76,7 @@ def home_page():
         solution2 = context2.compute_route(list_of_id, start_time)
         path_list = construct_closing_time_response(content, solution2)
         solution_dictionary['closed_stores'] = True if solution2[2] else False
-        travel_time = compute_travel_time(path_list, 'driving', start_time)
+        travel_time = -1 if not solution_dictionary['path_found'] else compute_travel_time(path_list, 'driving', start_time)
         solution_dictionary['paths'].append({'name' : 'Closing Time Path', 'path': path_list, 'travel_time': travel_time})
 
 
@@ -88,7 +88,7 @@ def home_page():
             solution_dictionary['paths'].append({'path': [], 'travel_time': -1})
         else:
             path = construct_optimal_response(content, solution3[0])
-            distance_travel_time = compute_travel_time(path, 'driving', start_time)
+            distance_travel_time = -1 if not solution_dictionary['path_found'] else compute_travel_time(path, 'driving', start_time)
             solution_dictionary['paths'].append({'name' : 'Distance Path', 'path': path, 'travel_time': distance_travel_time})
 
         # Default Path
@@ -99,7 +99,7 @@ def home_page():
             solution_dictionary['paths'].append({'path': [], 'travel_time': -1})
         else:
             path = construct_optimal_response(content, solution4)
-            default_travel_time = compute_travel_time(path, 'driving', start_time)
+            default_travel_time = -1 if not solution_dictionary['path_found'] else compute_travel_time(path, 'driving', start_time)
             solution_dictionary['paths'].append({'name' : 'Default Path', 'path': path, 'travel_time': default_travel_time})
 
         return jsonify(solution_dictionary)
