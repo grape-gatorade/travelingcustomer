@@ -65,7 +65,7 @@ def home_page():
         else:
             solution_dictionary['path_found'] = True
             path = construct_optimal_response(content, solution[0])
-            optimal_travel_time = compute_travel_time(path)
+            optimal_travel_time = compute_travel_time(path, 'driving', start_time)
             solution_dictionary['paths'].append({'name' : 'Optimal Path','path': path, 'travel_time': optimal_travel_time})
 
 
@@ -75,7 +75,7 @@ def home_page():
         solution2 = context2.compute_route(list_of_id, start_time)
         path_list = construct_closing_time_response(content, solution2)
         solution_dictionary['closed_stores'] = True if solution2[2] else False
-        travel_time = compute_travel_time(path_list)
+        travel_time = compute_travel_time(path_list, 'driving', start_time)
         solution_dictionary['paths'].append({'name' : 'Closing Time Path', 'path': path_list, 'travel_time': travel_time})
 
 
@@ -87,7 +87,7 @@ def home_page():
             solution_dictionary['paths'].append({'path': [], 'travel_time': -1})
         else:
             path = construct_optimal_response(content, solution3[0])
-            distance_travel_time = compute_travel_time(path)
+            distance_travel_time = compute_travel_time(path, 'driving', start_time)
             solution_dictionary['paths'].append({'name' : 'Distance Path', 'path': path, 'travel_time': distance_travel_time})
 
         # Default Path
@@ -98,7 +98,7 @@ def home_page():
             solution_dictionary['paths'].append({'path': [], 'travel_time': -1})
         else:
             path = construct_optimal_response(content, solution4)
-            default_travel_time = compute_travel_time(path)
+            default_travel_time = compute_travel_time(path, 'driving', start_time)
             solution_dictionary['paths'].append({'name' : 'Default Path', 'path': path, 'travel_time': default_travel_time})
 
         return jsonify(solution_dictionary)
@@ -115,9 +115,9 @@ def parse_start_time(json_info):
         start_time = json_info['info']['start_time']
         if start_time is None:
             print("start time NONNONONONONONEEE")
-            start_time = datetime.utcnow()
+            start_time = datetime.now()
         else:
-            depart_hour = start_time['hour'] + 5
+            depart_hour = start_time['hour'] 
             depart_minute = start_time['minute']
             depart_meridiem = start_time['meridiem']
 
@@ -127,8 +127,8 @@ def parse_start_time(json_info):
             today = datetime.today()
 
             start_time = datetime(today.year, today.month, today.day, depart_hour, depart_minute)
-            if start_time < datetime.utcnow():
-                start_time = datetime.utcnow()
+            if start_time < datetime.now():
+                start_time = datetime.now()
     except KeyError:
         start_time = datetime.now()
 
@@ -196,11 +196,14 @@ def construct_closing_time_response(json_info, solution):
 
     return places_in_order
 
-def compute_travel_time(path, travel_type='driving', start_time=datetime.now()):
+def compute_travel_time(path, travel_type='driving', start_time=None):
     """
         Given a list containing the path information,
         return the time to travel to each location from start to finish
     """
+    if (start_time is None):
+        start_time = datetime.now() + timedelta(minutes=5)
+
     gmaps = googlemaps.Client(key='AIzaSyBuGbc491h07Hp-ao-6o-dkLmUUX9OG_ho')
 
     total_time = 0

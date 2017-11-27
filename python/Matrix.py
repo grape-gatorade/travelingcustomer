@@ -67,7 +67,7 @@ class Matrix(object):
         """
         if start_time is None:
             print("enters here")
-            start_time = datetime.utcnow() + timedelta(minute=5)
+            start_time = datetime.utcnow() + timedelta(minutes=5)
 
         print(start_time)
         path_len = len(path_list)
