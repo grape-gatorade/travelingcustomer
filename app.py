@@ -114,6 +114,7 @@ def parse_start_time(json_info):
     try:
         start_time = json_info['info']['start_time']
         if start_time is None:
+            print("start time NONNONONONONONEEE")
             start_time = datetime.now()
         else:
             depart_hour = start_time['hour']
