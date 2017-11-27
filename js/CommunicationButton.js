@@ -31,6 +31,7 @@ class CommunicationButton extends Component {
     return (
       <div>
         <Button
+          className="btn btn-success"
           onClick={() => {
             const sendData = { info: this.props.sendInfo };
             this.sendFetchRequest(sendData);
