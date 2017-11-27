@@ -1,29 +1,30 @@
 import React from 'react';
-import { ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import ListDisplay from './ListDisplay';
-// import Hello from './Hello';
 import ShowRoutesSelector from './ShowRoutes';
 /*
 Required props: foundpaths
+list of path objects
+Contains a radiobutton that always different routes to be displayed
 */
 class DisplayRoutes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isLoggedIn: false };
+    this.state = {
+      selectedpath: null,
+    };
   }
 
   render() {
     const foundPaths = this.props.foundpaths;
     const routes = this.props.paths;
 
+    /* Conditional on whether paths were found or not */
     let fp = null;
     if (foundPaths) {
-      // fp = <div> found path true</div>;
       fp = <ShowRoutesSelector routes={routes} />;
     } else {
-      fp = <div> No paths yet</div>;
-      // fp = <ShowRoutesSelector routes="put routes here" />;
-      // <Greeting found={foundPaths} paths={routes} />
+      fp = (<div> No paths yet. Type in your desired locations
+              in the search bar and press done.
+            </div>);
     }
     return (
       <div>

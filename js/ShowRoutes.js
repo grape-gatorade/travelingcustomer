@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import ListDisplay from './ListDisplay'
 
+/*
+Required props: routes = list of routes objects
+Containes radio button group, with each button corresponding
+to a route and displays the path
+*/
 class ShowRoutesSelector extends Component {
   constructor(props) {
     super(props);
@@ -10,10 +15,9 @@ class ShowRoutesSelector extends Component {
     };
     this.onChange = this.onChange.bind(this);
   }
+  /* Updates the selected route state variable, called by button group */
   onChange(value) {
     console.log('Display OnChange called', value);
-    // selected = props.paths[value].path;
-    // console.log('selected ', selected);
     this.setState({ selected: value });
   }
   render() {
