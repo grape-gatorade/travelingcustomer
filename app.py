@@ -131,7 +131,7 @@ def parse_start_time(json_info):
     except KeyError:
         start_time = datetime.now()
 
-    extra_time = timedelta(minutes=1)
+    extra_time = timedelta(minutes=5)
 
     start_time = start_time + extra_time
 

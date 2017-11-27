@@ -17,6 +17,7 @@ class OptimalPath(PathStrategy):
         if path_list is None:
             path_list = []
         opt_matrix = Matrix()
+        print(start_time)
         opt_matrix.setup_distance_matrix(path_list, 'driving', start_time, 'duration')
         if not opt_matrix.is_valid_matrix():
             return -1

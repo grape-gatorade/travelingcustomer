@@ -65,6 +65,8 @@ class Matrix(object):
             travel_type:string indicating travel type
             valid values for travel type are 'driving, 'walking', or 'transit'
         """
+
+        print(start_time)
         path_len = len(path_list)
         if path_len == 0:
             self._matrix = []
@@ -80,13 +82,15 @@ class Matrix(object):
 
         last_call = datetime.now()
         for i in range(0, num_rows):
+            print(path_list[i])
+            print(start_time)
             dist_matrix = gmaps.distance_matrix(path_list[i],   # origin
                                                 path_list,      # destination
                                                 travel_type,    # travel type
                                                 'English',      # language
                                                 None,           # things to avoid
                                                 'imperial',     # units
-                                                start_time, # departure time
+                                                start_time,     # departure time
                                                 None,           # arrival time
                                                 None,           # public transit
                                                 None,           # transit preferences
