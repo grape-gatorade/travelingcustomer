@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { ButtonToolbar, ButtonGroup, Button, Form } from 'react-bootstrap';
 /*
 Required props: foundpaths
 */
@@ -37,19 +37,34 @@ class DisplayRoutes extends React.Component {
   }
 }
 
-function UserGreeting(props) {
-  return (<h1>Routes Found</h1>);
+// contains the radio buttons
+function ShowRoutes(props) {
+  return (
+    <div>
+      <div>Routes Found</div>
+      <ButtonToolbar>
+        <ButtonGroup justified type="checkbox">
+          <Button href="#">Optimal Path</Button>
+          <Button href="#">Closing Time Path</Button>
+          <Button href="#">Distance Path</Button>
+          <Button href="#">Default Path</Button>
+        </ButtonGroup>
+      </ButtonToolbar>
+    </div>
+
+  );
 }
 
 function GuestGreeting(props) {
-  return (<h1>To get started enter in your desired destinations in the search bar</h1>);
+  return (<div>To get started enter in your desired destinations in the search bar</div>);
 }
 
 function Greeting(props) {
   const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
-    return <UserGreeting />;
+    return <ShowRoutes />;
   }
+  // return <ShowRoutes />;
   return <GuestGreeting />;
 }
 
