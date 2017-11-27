@@ -1,4 +1,5 @@
 import React from 'react';
+import ListDisplay from './ListDisplay';
 import { ButtonToolbar, ToggleButtonGroup, ToggleButton, Form } from 'react-bootstrap';
 /*
 Required props: foundpaths
@@ -37,14 +38,13 @@ class DisplayRoutes extends React.Component {
     );
   }
 }
-
-
-
 // contains the radio buttons
 function ShowRoutes(props) {
+  let selected = props.paths[0].path;
   function onChange(value) {
-    console.log('Display OnChange called', value)
-    console.log(props.paths[value])
+    console.log('Display OnChange called', value);
+    selected = props.paths[value].path;
+    console.log('selected ', selected);
   }
   return (
     <div>
@@ -57,6 +57,7 @@ function ShowRoutes(props) {
           <ToggleButton value={3} >Default Path</ToggleButton>
         </ToggleButtonGroup>
       </ButtonToolbar>
+      <ListDisplay items={selected} />
     </div>
 
   );
