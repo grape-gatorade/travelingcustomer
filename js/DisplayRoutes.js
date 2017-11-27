@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonToolbar, ButtonGroup, Button, Form } from 'react-bootstrap';
+import { ButtonToolbar, ToggleButtonGroup, ToggleButton, Form } from 'react-bootstrap';
 /*
 Required props: foundpaths
 */
@@ -22,6 +22,7 @@ class DisplayRoutes extends React.Component {
   render() {
     const isLoggedIn = this.state.isLoggedIn;
     const foundPaths = this.props.foundpaths;
+    const routes = this.props.paths;
 
     let button = null;
     if (isLoggedIn) {
@@ -31,24 +32,29 @@ class DisplayRoutes extends React.Component {
     }
     return (
       <div>
-        <Greeting isLoggedIn={foundPaths} />
+        <Greeting found={foundPaths} paths={routes} />
       </div>
     );
   }
 }
 
+
+
 // contains the radio buttons
 function ShowRoutes(props) {
+  function onChange(value) {
+    console.log('Display OnChange called', value)
+  }
   return (
     <div>
       <div>Routes Found</div>
       <ButtonToolbar>
-        <ButtonGroup justified type="checkbox">
-          <Button href="#">Optimal Path</Button>
-          <Button href="#">Closing Time Path</Button>
-          <Button href="#">Distance Path</Button>
-          <Button href="#">Default Path</Button>
-        </ButtonGroup>
+        <ToggleButtonGroup type="radio" name="options" onChange={onChange} defaultValue={1}>
+          <ToggleButton value={1} >Optimal Path</ToggleButton>
+          <ToggleButton value={2} >Closing Time Path</ToggleButton>
+          <ToggleButton value={3} >Distance Path</ToggleButton>
+          <ToggleButton value={4} >Default Path</ToggleButton>
+        </ToggleButtonGroup>
       </ButtonToolbar>
     </div>
 
@@ -60,9 +66,9 @@ function GuestGreeting(props) {
 }
 
 function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
-  if (isLoggedIn) {
-    return <ShowRoutes />;
+  // const found = props.found;
+  if (props.found) {
+    return <ShowRoutes paths={props.paths} />;
   }
   // return <ShowRoutes />;
   return <GuestGreeting />;
