@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 
 class GoogleMapsShareButton extends Component {
+  static defaultProps = {
+    text: 'Open Google Maps',
+  }
+
   constructor(props) {
     super(props);
 
@@ -12,7 +16,7 @@ class GoogleMapsShareButton extends Component {
   openGoogleMapsWindow() {
     const url = 'https://www.google.com/maps/dir/';
 
-    const listItems = this.props.list.state.items;
+    const listItems = this.props.items;
 
     const currentLocationString = `${listItems[0].latLng.lat},${listItems[0].latLng.lng}/`;
 

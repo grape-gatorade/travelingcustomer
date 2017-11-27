@@ -66,7 +66,6 @@ class Matrix(object):
             valid values for travel type are 'driving, 'walking', or 'transit'
         """
         if start_time is None:
-            print("enters here")
             start_time = datetime.utcnow() + timedelta(minutes=5)
 
         print(start_time)
@@ -85,9 +84,6 @@ class Matrix(object):
 
         last_call = datetime.now()
         for i in range(0, num_rows):
-            print(path_list[i])
-            print(datetime.now())
-            print(start_time)
             dist_matrix = gmaps.distance_matrix(path_list[i],   # origin
                                                 path_list,      # destination
                                                 travel_type,    # travel type
@@ -116,8 +112,7 @@ class Matrix(object):
             # There is a limit on the number of elements requested per second to google maps.
             # We sleep for a second if we will be making large requests to the API.
             if len(path_list) >= 10:
-                print((float(len(path_list)) / float(100.0)) + float(0.05) - (datetime.now() - last_call).total_seconds())
-                if ((datetime.now() - last_call).total_seconds() < ((float(len(path_list)) / float(100.0)) + float(0.01))):
+                if (datetime.now() - last_call).total_seconds() < ((float(len(path_list)) / float(100.0)) + float(0.01)):
                     time.sleep((float(len(path_list)) / float(100.0)) + float(0.05) - (datetime.now() - last_call).total_seconds())
                 last_call = datetime.now()
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import GoogleMapsShareButton from './GoogleMapsShareButton';
 import ListDisplay from './ListDisplay';
 
 /*
@@ -38,6 +39,7 @@ class ShowRoutesSelector extends Component {
             <ToggleButton value={3} >Default Path</ToggleButton>
           </ToggleButtonGroup>
         </ButtonToolbar>
+        <GoogleMapsShareButton items={selectedRoute} />
       </div>
     );
   }

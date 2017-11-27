@@ -115,10 +115,9 @@ def parse_start_time(json_info):
     try:
         start_time = json_info['info']['start_time']
         if start_time is None:
-            print("start time NONNONONONONONEEE")
             start_time = datetime.now()
         else:
-            depart_hour = start_time['hour'] 
+            depart_hour = start_time['hour']
             depart_minute = start_time['minute']
             depart_meridiem = start_time['meridiem']
 
@@ -225,8 +224,6 @@ def compute_travel_time(path, travel_type='driving', start_time=None):
         total_time += dist_matrix['rows'][0]['elements'][0]['duration']['value']
 
     return total_time
-
-
 
 if __name__ == '__main__':
     APP.run(debug=True)
