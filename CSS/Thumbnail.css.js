@@ -8,6 +8,14 @@ export default {
     padding: '10px',
 
   },
+  greenlistitem: {
+    borderRadius: '3px',
+    borderColor: 'black',
+    // '#A8CBD4'
+    backgroundColor: '#5F9D5F',
+    color: 'white',
+    padding: '10px',
+  },
   listdisplay: {
     borderRadius: '3px',
   },

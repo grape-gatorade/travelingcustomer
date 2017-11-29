@@ -12,11 +12,11 @@ class ListDisplay extends Component {
     console.log('render list display props: ', this.props);
     const list = this.props.items;
     return (
-      <div style={styles.list}>
+      <div style={this.props.style}>
         <ul>
           { list.map(item => (
             <div key={item.id}>
-              <ListItem key={item.id} name={item.name} />
+              <ListItem key={item.id} style={this.props.itemstyle} name={item.name} />
             </div>
           ))}
         </ul>
@@ -25,5 +25,7 @@ class ListDisplay extends Component {
 }
 ListDisplay.defaultProps = {
   items: [],
+  style: styles.list,
+  itemstyle: styles.listitem,
 };
 export default ListDisplay;

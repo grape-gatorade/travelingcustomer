@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ButtonToolbar, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import GoogleMapsShareButton from './GoogleMapsShareButton';
 import ListDisplay from './ListDisplay';
+import styles from '../CSS/Thumbnail.css';
 
 /*
 Required props: routes = list of routes objects
@@ -26,7 +27,7 @@ class ShowRoutesSelector extends Component {
     console.log('ShowRoutesSelector is rendering', this.props.routes[s].path);
 
     const selectedRoute = this.props.routes[s].path;
-    const list = <ListDisplay items={selectedRoute} />;
+    const list = <ListDisplay items={selectedRoute} itemstyle={styles.greenlistitem} />;
     return (
       <div>
         <div> Possible Routes </div>

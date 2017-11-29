@@ -5,10 +5,11 @@ import styles from '../CSS/Thumbnail.css';
 
 class ListItem extends Component {
   render() {
-    return <div style={styles.listitem}>{this.props.name}</div>;
+    return <div style={this.props.style}>{this.props.name}</div>;
   }
 }
 ListItem.defaultProps = {
   name: '',
+  style: styles.listitem,
 };
 export default ListItem;
