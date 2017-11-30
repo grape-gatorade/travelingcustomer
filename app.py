@@ -31,29 +31,30 @@ def home_page():
             Here we begin computing routes to send in the JSON response
 
             Format of JSON Response:
-                {
-                    closed_stores: bool,
-                    path_found: bool,
-                    paths: [
-                        { path: [
-                            ...
-                          ], travel_time: int
-                        },
-                        { path: [
-                            ...
+            {
+                closed_stores: bool,
+                path_found: bool,
+                paths: [
+                    { path: [
+                        ...
                         ], travel_time: int
-                        },
-                        { path: [
-                            ...
-                          ], travel_time: int
-                        },
-                        { path: [
-                            ...
+                    },
+                    { path: [
+                        ...
+                    ], travel_time: int
+                    },
+                    { path: [
+                        ...
                         ], travel_time: int
-                        }
-                    ]
-                }
+                    },
+                    { path: [
+                        ...
+                    ], travel_time: int
+                    }
+                ]
+            }
         """
+
         solution_dictionary = {'paths':[]}
 
         # Optimal Path

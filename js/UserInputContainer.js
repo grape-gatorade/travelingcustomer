@@ -1,3 +1,4 @@
+/* eslint-env browser */
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
 import ListDisplay from './ListDisplay';
@@ -49,7 +50,14 @@ class UserInputContainer extends Component {
   handleRecieveInfo(info) {
     console.log('handleRecieveInfo', info);
     this.setState({ recieved: info });
+    if (!info.path_found) {
+      window.alert('Unable to find path!');
+    }
+    if (info.closed_stores) {
+      window.alert('There were closed stores on your route!');
+    }
   }
+
   render() {
     console.log('render userinput: ', this.props);
     const currentLocation = this.props.map_show.state.center;
